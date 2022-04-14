@@ -2,27 +2,26 @@ import React, { ChangeEvent, ReactEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import Main from "../components/Main/Main";
-import { roomInfoAtom, userInfoAtom } from "../states/main";
+import { roomInfoAtom, userAtom, userInfoAtom } from "../states/main";
 export interface enterRoomType {
   roomName: string;
-  nickName: string;
+  nickname: string;
 }
 
 const enterRoomState: enterRoomType = {
   roomName: "",
-  nickName: "",
+  nickname: "",
 };
 
 const MainContainer = () => {
   const navigator = useNavigate();
   const [enterRoomInfo, setEnterRoomInfo] =
     useState<enterRoomType>(enterRoomState);
-  const setUserInfo = useSetRecoilState(userInfoAtom);
+  const [user, setUser] = useRecoilState<string>(userAtom);
   const [roomInfo, setRoomInfo] = useRecoilState(roomInfoAtom);
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
-    console.log(e.currentTarget);
     const { id, value } = e.currentTarget;
+
     setEnterRoomInfo({
       ...enterRoomInfo,
       [id]: value,
@@ -31,13 +30,11 @@ const MainContainer = () => {
 
   const onEnterRoom = async () => {
     await (async () => {
-      setUserInfo({
-        nickName: enterRoomInfo.nickName,
-      });
       setRoomInfo({
         ...roomInfo,
         roomName: enterRoomInfo.roomName,
       });
+      setUser(enterRoomInfo.nickname);
     })();
     await (async () => {
       navigator(`/room/${enterRoomInfo.roomName}`);

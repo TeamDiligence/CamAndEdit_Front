@@ -17,8 +17,8 @@ const Main = ({ handleInput, onEnterRoom, enterRoomInfo }: MainProps) => {
         placeholder="방이름"
       />
       <input
-        id="nickName"
-        value={enterRoomInfo.nickName}
+        id="nickname"
+        value={enterRoomInfo.nickname}
         onChange={(e) => handleInput(e)}
         placeholder="닉네임이름"
       />

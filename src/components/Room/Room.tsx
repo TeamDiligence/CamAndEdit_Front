@@ -1,16 +1,17 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { Responsive, WidthProvider } from "react-grid-layout";
 import { roomInfoType } from "../../types/roomInfo";
-import UserCam from "../UserCam/UserCam";
+import { userInfoType } from "../../types/userInfo";
+import UserCam from "./UserCam";
 
 export interface RoomProps {
   roomInfo: roomInfoType;
+  userInfo: userInfoType[];
+  myInfo: any;
 }
 
-const Room = ({ roomInfo }: RoomProps) => {
-  const userList = ["a", "b", "c"];
+const Room = ({ roomInfo, userInfo, myInfo }: RoomProps) => {
+  const { nickname, stream: myStream } = myInfo;
 
   return (
     <RoomLayout>
@@ -20,8 +21,9 @@ const Room = ({ roomInfo }: RoomProps) => {
         <DocsViewLayout />
       </BoardLayout>
       <CamLayout>
-        {userList.map((user) => (
-          <UserCam nickName={user}></UserCam>
+        <UserCam nickname={nickname} stream={myStream} test={false} />
+        {userInfo.map((user) => (
+          <UserCam nickname={user.nickname} stream={user.stream!} test={true} />
         ))}
       </CamLayout>
     </RoomLayout>
