@@ -3,8 +3,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { io, Socket } from "socket.io-client";
 import Room from "../components/Room/Room";
 import { roomInfoAtom, userAtom, userInfoAtom } from "../states/main";
-import { userInfoType } from "../types/userInfo";
-import { getLocalStream } from "../utils/getLocalStream";
+import { userInfoType } from "../lib/types/userInfo";
+import { getLocalStream } from "../lib/utils/getLocalStream";
 
 export type setVideoTracksArgs = {
   pc: RTCPeerConnection;
