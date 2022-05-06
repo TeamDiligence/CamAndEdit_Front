@@ -6,4 +6,4 @@ export { default as GroupIconSvg } from './GroupIcon.svg'
 export { default as AddDocsIconSvg } from './AddDocsIcon.svg'
 export { default as AddCanvasIconSvg } from './AddCanvasIcon.svg'
 export { default as InvitePeopleIconSvg } from './InvitePeopleIcon.svg'
-
+export { default as PlusIcon} from  './PlusIcon.svg'
