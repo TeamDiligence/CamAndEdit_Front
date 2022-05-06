@@ -6,5 +6,6 @@ export const MainLayout = styled.div`
     height: 100vh;
     top:0;
     left:0;
-    background-color:blue;
+    background-color: #f0f0f0;
+    overflow: hidden;
 `

@@ -1,7 +1,8 @@
 import React from "react";
+import Main from "../components/Main/Main";
 
 const MainContainer = () => {
-  return <>메인 컨테이너 입니다</>;
+  return <Main />;
 };
 
 export default MainContainer;

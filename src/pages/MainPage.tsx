@@ -1,12 +1,13 @@
 import React from "react";
+import NavigationBar from "../components/Navbar/";
 import MainContainer from "../containers/MainContainer";
 import { MainLayout } from "../lib/styles/layout";
 
 const MainPage = () => {
   return (
     <MainLayout>
+      <NavigationBar type="main" />
       <MainContainer />
-      메인 페이지 입니다
     </MainLayout>
   );
 };
