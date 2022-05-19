@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_MIDDLE_SIZE, ICON_SMALL_SIZE } from "../../lib/styles/size";
+import { createWorkSpaceStateAtom } from "../../states/main";
 import CustomIcon from "../common/CustomIcon";
 
 const MainNavBar: React.FC<any> = () => {
+  const [createWorkSpaceState, setCreateWorkSpaceState] =
+    useRecoilState<boolean>(createWorkSpaceStateAtom);
   return (
     <>
       <Middle>
@@ -12,7 +16,8 @@ const MainNavBar: React.FC<any> = () => {
           icon={icons.PlusIcon}
           height={ICON_MIDDLE_SIZE}
           onClick={() => {
-            console.log("워크스페이스 추가");
+            console.log(createWorkSpaceState);
+            setCreateWorkSpaceState(!createWorkSpaceState);
           }}
         />
       </Middle>

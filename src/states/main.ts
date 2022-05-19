@@ -22,3 +22,10 @@ export const roomInfoAtom = atom<roomInfoType>({
     },
     key:"atom/roomInfo"
 })
+
+
+
+export const createWorkSpaceStateAtom = atom<boolean>({
+    default: false,
+    key:"atom/createWorkSpaceState"
+})

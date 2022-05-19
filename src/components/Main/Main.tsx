@@ -10,7 +10,7 @@ import Card from "./Card";
 import * as S from "./style";
 export interface MainProps {}
 
-const mockUpData = [
+const workSpaces = [
   {
     ...WorkSpaceDummy,
     users: [...userListDummy],
@@ -34,7 +34,7 @@ const Main = ({}: MainProps) => {
     <S.Wrapper>
       <S.Title>나의 워크스페이스</S.Title>
       <S.Grid>
-        {mockUpData.map((c) => (
+        {workSpaces.map((c) => (
           <Card
             key={c.workSpaceId}
             workSpaceId={c.workSpaceId}

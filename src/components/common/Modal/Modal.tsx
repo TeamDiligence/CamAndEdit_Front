@@ -2,20 +2,21 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 
 type ModalProps = {
+  state: boolean;
+  onHandleState: () => void;
   children: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ children }) => {
-  const onHandleModalState = () => {
-    setModalState(false);
-  };
+const Modal: React.FC<ModalProps> = ({ children, state, onHandleState }) => {
+  // const onHandleModalState = () => {
+  //   setModalState(false);
+  // };
   const onHandlePropgation = (e: React.SyntheticEvent) => {
     e.stopPropagation();
   };
 
-  const [modalState, setModalState] = useState<boolean>(true);
   return (
-    <ModalBackground onClick={onHandleModalState} modalState={modalState}>
+    <ModalBackground onClick={onHandleState} modalState={state}>
       <ModalContent onClick={onHandlePropgation}>{children}</ModalContent>
     </ModalBackground>
   );
@@ -40,8 +41,9 @@ const ModalBackground = styled("div")`
 
 const ModalContent = styled.div`
   padding: 2rem;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   border-radius: 4px;
   overflow: hidden;
   background-color: #ffffff;
+  backdrop-filter: blur(20px);
 `;

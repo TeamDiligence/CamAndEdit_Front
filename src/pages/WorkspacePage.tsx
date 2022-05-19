@@ -1,5 +1,4 @@
 import React from "react";
-import ResizableTab from "../components/common/ResizableTab/ResizeableTab";
 import NavigationBar from "../components/Navbar/";
 import CamListContainer from "../containers/CamListContainer";
 import MeetingRoomContainer from "../containers/MeetingRoomContainer";
