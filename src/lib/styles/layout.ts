@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MainLayout = styled.div`
+export const PageLayout = styled.div`
     position: relative;
     width: 100vw;
     height: 100vh;

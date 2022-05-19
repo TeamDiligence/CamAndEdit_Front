@@ -15,12 +15,12 @@ export const WorkSpaceDummy1 = {
     createAt: new Date(),
 }
 export const WorkSpaceDummy2 = {
-    workSpaceId: 12312333333,
+    workSpaceId: 1231233333333,
     workSpaceName: "상준의 워크스페이스",
     createAt: new Date(),
 }
 export const WorkSpaceDummy3= {
-    workSpaceId: 123123555513,
+    workSpaceId: 123123555444513,
     workSpaceName: "캡스톤 디자인캡스톤 디자인캡스톤 디자인",
     createAt: new Date(),
 }

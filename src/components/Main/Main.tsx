@@ -27,14 +27,6 @@ const mockUpData = [
     ...WorkSpaceDummy3,
     users: [...userListDummy],
   },
-  {
-    ...WorkSpaceDummy3,
-    users: [...userListDummy],
-  },
-  {
-    ...WorkSpaceDummy2,
-    users: [...userListDummy],
-  },
 ];
 
 const Main = ({}: MainProps) => {
@@ -45,6 +37,7 @@ const Main = ({}: MainProps) => {
         {mockUpData.map((c) => (
           <Card
             key={c.workSpaceId}
+            workSpaceId={c.workSpaceId}
             workSpaceName={c.workSpaceName}
             createAt={c.createAt}
             users={c.users}

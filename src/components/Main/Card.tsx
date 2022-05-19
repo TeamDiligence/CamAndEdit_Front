@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { Link } from "react-router-dom";
 import { ProfileIcon } from "../../lib/asset";
 import { User } from "../../lib/types/user";
 export interface CardProps {
@@ -10,16 +11,24 @@ export interface CardProps {
   users: Array<User>;
 }
 
-const Card: React.FC<CardProps> = ({ workSpaceName, createAt, users }) => {
+const Card: React.FC<CardProps> = ({
+  workSpaceId,
+  workSpaceName,
+  createAt,
+  users,
+}) => {
   return (
-    <Wrapper>
+    //
+    <Wrapper onClick={() => console.log(workSpaceId)}>
+      {/* <Link to="/workspace"> */}
       <WorkSpaceName>{workSpaceName}</WorkSpaceName>
       <CreateAt>{createAt.toISOString().slice(0, 10)}</CreateAt>
       <UserListWrapper>
-        {users.map((user) => (
-          <UserProfile name={user.name} image={user.image} />
+        {users.map((user, i) => (
+          <UserProfile key={i} name={user.name} image={user.image} />
         ))}
       </UserListWrapper>
+      {/* </Link> */}
     </Wrapper>
   );
 };

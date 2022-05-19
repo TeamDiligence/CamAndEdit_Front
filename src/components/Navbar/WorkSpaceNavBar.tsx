@@ -1,20 +1,35 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_SMALL_SIZE } from "../../lib/styles/size";
+import { camListStateAtom, meetingRoomStateAtom } from "../../states/workspace";
 import CustomIcon from "../common/CustomIcon";
 
 const WorkSpaceNavBar: React.FC<any> = () => {
+  const [meetingRoomState, setMeetingRoomState] =
+    useRecoilState<boolean>(meetingRoomStateAtom);
+  const [camListState, setCamListState] =
+    useRecoilState<boolean>(camListStateAtom);
+  const onHandleMeetingRoom = () => {
+    setMeetingRoomState(!meetingRoomState);
+  };
+  const onHandleCamList = () => {
+    setCamListState(!camListState);
+  };
+
   return (
     <>
       <CustomIcon
         icon={icons.ListIconSvg}
         width={ICON_SMALL_SIZE}
-        onClick={() => {
-          console.log("아이콘 onClick");
-        }}
+        onClick={onHandleMeetingRoom}
       />
-      <CustomIcon icon={icons.GroupIconSvg} width={ICON_SMALL_SIZE} />
+      <CustomIcon
+        icon={icons.GroupIconSvg}
+        width={ICON_SMALL_SIZE}
+        onClick={onHandleCamList}
+      />
       <Middle>
         <CustomIcon icon={icons.AddDocsIconSvg} width={ICON_SMALL_SIZE} />
         <CustomIcon icon={icons.AddCanvasIconSvg} width={ICON_SMALL_SIZE} />
@@ -46,7 +61,7 @@ const Middle = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  grid-column: 3/5;
+  grid-column: 3;
   & > div {
     margin-left: 10px;
   }
