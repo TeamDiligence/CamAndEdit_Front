@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import Loading from "../components/common/Loading/Loading";
 import { setCookie } from "../lib/utils/cookie";
 import { loginCheck } from "../lib/utils/loginCheck";
 import { isLoginedAtom } from "../states/global";
@@ -43,7 +44,7 @@ const AuthCheckerContainer = ({}: AuthCheckerContainerProps) => {
   }, [loading]);
 
   if (loading && isLogined) {
-    return <div>loading</div>;
+    return <Loading />;
   }
   return <Outlet />;
 };

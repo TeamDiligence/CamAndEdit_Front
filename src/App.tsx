@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Loading from "./components/common/Loading/Loading";
 import AuthCheckerContainer from "./containers/AuthCheckerContainer";
 import AuthRedirectPage from "./pages/AuthRedirectPage";
 import LoginPage from "./pages/LoginPage";
@@ -12,7 +13,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AuthCheckerContainer />}>
           <Route path="main" element={<MainPage />} />
-          <Route path="test" element={<div> testst</div>}></Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="workspace" element={<WorkSpacePage />} />
         </Route>
