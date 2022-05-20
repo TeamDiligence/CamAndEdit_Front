@@ -1,7 +1,8 @@
 import React from "react";
+import LoginContainer from "../containers/LoginContainer";
 
 const LoginPage = () => {
-  return <>로그인 페이지입니다</>;
+  return <LoginContainer />;
 };
 
 export default LoginPage;
