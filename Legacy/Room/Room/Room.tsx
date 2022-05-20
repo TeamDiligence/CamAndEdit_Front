@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { roomInfoType } from "../../types/roomInfo";
-import { userInfoType } from "../../types/userInfo";
+import { roomInfoType } from "../../../src/lib/types/roomInfo";
+import { userInfoType } from "../../../src/lib/types/userInfo";
 import UserCam from "./UserCam";
 
 export interface RoomProps {

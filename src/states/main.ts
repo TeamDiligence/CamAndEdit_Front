@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
-import { roomInfoType } from "../types/roomInfo";
-import { userInfoType } from "../types/userInfo";
+import { roomInfoType } from "../lib/types/roomInfo";
+import { userInfoType } from "../lib/types/userInfo";
 
 
 export const userAtom = atom<string>({
@@ -21,4 +21,11 @@ export const roomInfoAtom = atom<roomInfoType>({
         roomName: ""
     },
     key:"atom/roomInfo"
+})
+
+
+
+export const createWorkSpaceStateAtom = atom<boolean>({
+    default: false,
+    key:"atom/createWorkSpaceState"
 })

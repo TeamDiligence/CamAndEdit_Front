@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-  ]
+, "Legacy/Room/Room", "Legacy/Room/RoomContainer.tsx", "LoginLegacy"  ]
 }

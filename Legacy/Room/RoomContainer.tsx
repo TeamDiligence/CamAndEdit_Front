@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { io, Socket } from "socket.io-client";
-import Room from "../components/Room/Room";
-import { roomInfoAtom, userAtom, userInfoAtom } from "../states/main";
-import { userInfoType } from "../types/userInfo";
-import { getLocalStream } from "../utils/getLocalStream";
+import Room from "./Room/Room";
+import { roomInfoAtom, userAtom, userInfoAtom } from "../../src/states/main";
+import { userInfoType } from "../../src/lib/types/userInfo";
+import { getLocalStream } from "../../src/lib/utils/getLocalStream";
 
 export type setVideoTracksArgs = {
   pc: RTCPeerConnection;
