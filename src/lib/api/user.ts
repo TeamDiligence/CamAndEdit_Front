@@ -14,8 +14,32 @@ export const getUserInfo = async () => {
     })
     .then(res => res.data)
     .catch(e => {
-        console.log(e);
+        const {data}  = e.response;
+        console.log(data);
         return ;
     });
+    return response;
+}
+
+export const createWorkSpace = async (name:string) => {
+    const accessToken = getCookie('CAE_accessToken')
+    const response = await axios({
+        method: "POST",
+        url: "/workspace",
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        },
+        data: {
+            name: name
+        }
+    })
+        .then(res => {
+            const { data } = res;
+            return data;
+        })
+        .catch(e => {
+            const { data } = e.response;
+            return data;
+        });
     return response;
 }

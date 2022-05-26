@@ -5,12 +5,8 @@ import { userAtom, userWorkSpaceSelector } from "../states/main";
 import { useRecoilValue } from "recoil";
 
 const MainContainer = () => {
+  const user = useRecoilValue(userAtom);
   const workSpaceList = useRecoilValue<Array<WorkSpace>>(userWorkSpaceSelector);
-  // const user = useRecoilValue(userAtom);
-  // useEffect(() => {
-  //   console.log(user);
-  // });
-
   return <Main workSpaceList={workSpaceList} />;
 };
 

@@ -1,26 +1,64 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { useRecoilState } from "recoil";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  KeyboardEvent,
+  useState,
+} from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { createWorkSpace, getUserInfo } from "../../../lib/api/user";
 import { Button } from "../../../lib/styles/button";
-import { createWorkSpaceStateAtom } from "../../../states/main";
+import { User } from "../../../lib/types/user";
+import { createWorkSpaceStateAtom, userAtom } from "../../../states/main";
 import Modal from "./Modal";
 export interface CreateWorkSpaceModalProps {}
 
 const CreateWorkSpaceModal = ({}: CreateWorkSpaceModalProps) => {
   const [createWorkSpaceState, setCreateWorkSpaceModalState] =
     useRecoilState<boolean>(createWorkSpaceStateAtom);
+  const setUser = useSetRecoilState<User>(userAtom);
+  const [value, setValue] = useState<string>("");
+
   const onHandleState = () => {
     setCreateWorkSpaceModalState(!createWorkSpaceState);
   };
+  const onChangeValue: ChangeEventHandler<HTMLInputElement> = (
+    e: ChangeEvent
+  ) => {
+    const target = e.target as HTMLInputElement;
+    setValue(target.value);
+  };
+
+  const handleEnter = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleCreateWorkSpace();
+    }
+  };
+  const handleCreateWorkSpace = async () => {
+    const response = await createWorkSpace(value);
+    const { success, message } = response;
+    if (success) {
+      const { data } = await getUserInfo();
+      setUser(data);
+      setCreateWorkSpaceModalState(!createWorkSpaceState);
+    } else {
+      alert(message);
+    }
+  };
+
   return (
     <Modal state={createWorkSpaceState} onHandleState={onHandleState}>
       <Wrapper>
         <div>로고</div>
         <Title>
           <Text>워크스페이스 이름</Text>
-          <TitleInput />
+          <TitleInput
+            value={value}
+            onChange={onChangeValue}
+            onKeyPress={handleEnter}
+          />
         </Title>
-        <Button onClick={() => console.log(123)}> 워크스페이스 생성 </Button>
+        <Button onClick={handleCreateWorkSpace}>워크스페이스 생성</Button>
       </Wrapper>
     </Modal>
   );

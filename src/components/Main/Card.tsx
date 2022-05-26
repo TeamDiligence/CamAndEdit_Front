@@ -7,14 +7,14 @@ export interface CardProps {
   key: number;
   workSpaceId?: number;
   workSpaceName: string;
-  createAt: Date;
+  createdAt: Date;
   memberList: Array<User>;
 }
 
 const Card: React.FC<CardProps> = ({
   workSpaceId,
   workSpaceName,
-  createAt,
+  createdAt,
   memberList,
 }) => {
   return (
@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({
     <Wrapper onClick={() => console.log(workSpaceId)}>
       {/* <Link to="/workspace"> */}
       <WorkSpaceName>{workSpaceName}</WorkSpaceName>
-      <CreateAt>{createAt.toISOString().slice(0, 10)}</CreateAt>
+      <CreatedAt>{new Date(createdAt).toISOString().slice(0, 10)}</CreatedAt>
       <UserListWrapper>
         {memberList.map((user, i) => (
           <UserProfile key={i} name={user.name} image={user.image} />
@@ -48,7 +48,7 @@ const WorkSpaceName = styled.div`
   margin-bottom: 4px;
 `;
 
-const CreateAt = styled.div`
+const CreatedAt = styled.div`
   font-size: 0.7rem;
   color: gray;
 `;
@@ -72,7 +72,7 @@ const UserProfile: React.FC<{ name: string; image: string | null }> = ({
     flex-direction: column;
   `;
   const ProfileImage = ({ image }: { image: string }) => {
-    return <img src={image} alt={""}></img>;
+    return <img src={image} alt={""} width="20px" height="20px" />;
   };
 
   const Name = styled.div`

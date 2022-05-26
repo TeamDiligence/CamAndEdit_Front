@@ -45,7 +45,7 @@ const Main = ({ workSpaceList = [] }: MainProps) => {
               key={c.id}
               workSpaceId={c.id}
               workSpaceName={c.name}
-              createAt={c.createdAt}
+              createdAt={c.createdAt}
               memberList={c.memberList}
             />
           ))

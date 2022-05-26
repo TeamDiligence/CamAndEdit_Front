@@ -16,6 +16,10 @@ export const userWorkSpaceSelector = selector<any>({
         const user = get(userAtom);
         if (!user) return [];
         return user.workSpaceList;
+    },
+    set: ({ get,set }) => {
+        const user = get(userAtom);
+        set(userAtom, user);
     }
 })
 
