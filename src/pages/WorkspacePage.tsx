@@ -1,17 +1,23 @@
-import React from "react";
-import NavigationBar from "../components/Navbar/";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import NavigationBar from "../components/Navbar";
 import CamListContainer from "../containers/CamListContainer";
 import MeetingRoomContainer from "../containers/MeetingRoomContainer";
-import WorkSpaceContainer from "../containers/WorkSpaceContainer";
 import { PageLayout } from "../lib/styles/layout";
 
 const WorkSpacePage = () => {
+  const param = useParams();
+  const navigate = useNavigate();
+  if (!param.id) {
+    navigate("/main", { replace: false });
+  }
+
   return (
     <PageLayout>
       <NavigationBar type="workSpace" />
       <MeetingRoomContainer />
       <CamListContainer />
-      <WorkSpaceContainer />
+      <Outlet />
     </PageLayout>
   );
 };

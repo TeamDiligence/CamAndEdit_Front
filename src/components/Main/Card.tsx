@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProfileIcon } from "../../lib/asset";
 import { User } from "../../lib/types/user";
 export interface CardProps {
@@ -17,10 +17,15 @@ const Card: React.FC<CardProps> = ({
   createdAt,
   memberList,
 }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/workSpace/${workSpaceId}`);
+  };
+
   return (
     //
-    <Wrapper onClick={() => console.log(workSpaceId)}>
-      {/* <Link to="/workspace"> */}
+    <Wrapper onClick={handleNavigate}>
       <WorkSpaceName>{workSpaceName}</WorkSpaceName>
       <CreatedAt>{new Date(createdAt).toISOString().slice(0, 10)}</CreatedAt>
       <UserListWrapper>
@@ -28,7 +33,6 @@ const Card: React.FC<CardProps> = ({
           <UserProfile key={i} name={user.name} image={user.image} />
         ))}
       </UserListWrapper>
-      {/* </Link> */}
     </Wrapper>
   );
 };
@@ -40,6 +44,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 20px;
   background-color: white;
+  &:hover {
+    box-shadow: 2px 2px 10px 2px #9d9d9dd3;
+    transform: translate(-1%, -1%);
+    transition: ease 0.2s;
+  }
 `;
 
 const WorkSpaceName = styled.div`
