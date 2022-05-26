@@ -1,13 +1,18 @@
 import { getUserInfo } from "../api/user";
-import { getCookie } from "./cookie";
+import { getCookie, removeCookie } from "./cookie";
 
 export const loginCheck = async () => {
     const cookie = getCookie("CAE_accessToken");
-    const userInfo = await getUserInfo();
-    // console.log(cookie, userInfo);
-    if (cookie && userInfo.success === true) {
-        return true;
+    const response = await getUserInfo();
+
+    if (!response) { 
+        removeCookie("CAE_accessToken");
+        return {loginState : false, data:[]}
+    }
+    if (cookie && response.success === true) {
+
+        return {loginState:true, data:response.data};
     }
     else
-        return false;
+        return {loginState:false, data:[]};
 }
