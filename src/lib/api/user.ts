@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie } from "../utils/cookie";
+import { getCookie} from "../utils/cookie";
 
 
 
@@ -13,6 +13,9 @@ export const getUserInfo = async () => {
         }
     })
     .then(res => res.data)
-    .catch(e => console.log(e));
+    .catch(e => {
+        console.log(e);
+        return ;
+    });
     return response;
 }

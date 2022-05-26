@@ -8,14 +8,14 @@ export interface CardProps {
   workSpaceId?: number;
   workSpaceName: string;
   createAt: Date;
-  users: Array<User>;
+  memberList: Array<User>;
 }
 
 const Card: React.FC<CardProps> = ({
   workSpaceId,
   workSpaceName,
   createAt,
-  users,
+  memberList,
 }) => {
   return (
     //
@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({
       <WorkSpaceName>{workSpaceName}</WorkSpaceName>
       <CreateAt>{createAt.toISOString().slice(0, 10)}</CreateAt>
       <UserListWrapper>
-        {users.map((user, i) => (
+        {memberList.map((user, i) => (
           <UserProfile key={i} name={user.name} image={user.image} />
         ))}
       </UserListWrapper>

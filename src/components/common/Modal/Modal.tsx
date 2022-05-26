@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({ children, state, onHandleState }) => {
 export default Modal;
 
 const ModalBackground = styled("div")`
-  z-index: 5;
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,6 +40,7 @@ const ModalBackground = styled("div")`
 `;
 
 const ModalContent = styled.div`
+  z-index: 6;
   padding: 2rem;
   /* border: 1px solid #000000; */
   border-radius: 4px;

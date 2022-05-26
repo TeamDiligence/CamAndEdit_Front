@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loading from "./components/common/Loading/Loading";
 import AuthCheckerContainer from "./containers/AuthCheckerContainer";
 import AuthRedirectPage from "./pages/AuthRedirectPage";
 import LoginPage from "./pages/LoginPage";
