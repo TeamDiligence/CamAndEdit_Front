@@ -4,7 +4,6 @@ import { getCookie, removeCookie } from "./cookie";
 export const loginCheck = async () => {
     const cookie = getCookie("CAE_accessToken");
     const response = await getUserInfo();
-    // console.log(cookie, userInfo);
 
     if (!response) { 
         removeCookie("CAE_accessToken");
