@@ -1,10 +1,13 @@
+import { WorkSpace } from "./workSpace";
+export type Role = "Admin" | any
 export type User = {
-	userId: number;
 	email: string;
 	name: string;
+	userId: number;
 	description: string;
+	workSpaceList: Array<WorkSpace> | null
+	role?:Role
 	image: string | null;
-    workSpace: Array<any> | null
 }
 
 export const userDummy= {
@@ -13,16 +16,16 @@ export const userDummy= {
 	name: '김상준',
 	description: "안녕 내 이름은 김 상준이야",
 	image: null,
-	workSpace: []
+	workSpaceList: []
 }
-export const userListDummy = [
+export const userListDummy :Array<User> = [
 	{
 		userId: 1,
 		email: 'dummyyy@google.com',
 		name: '김상준',
 		description: "안녕 내 이름은 김 상준이야",
 		image: null,
-		workSpace: []
+		workSpaceList: []
 	},
 	{
 		userId: 2,
@@ -30,7 +33,7 @@ export const userListDummy = [
 		name: '이상준',
 		description: "안녕 내 이름은 이 상준이야",
 		image: null,
-		workSpace: []
+		workSpaceList: []
 	},
 	{
 		userId: 13,
@@ -38,7 +41,7 @@ export const userListDummy = [
 		name: '박상준',
 		description: "안녕 내 이름은 박 상준이야",
 		image: null,
-		workSpace: []
+		workSpaceList: []
 	}
 
 ]

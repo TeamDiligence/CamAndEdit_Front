@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { userListDummy } from "../../lib/types/user";
 import {
+  WorkSpace,
   WorkSpaceDummy,
   WorkSpaceDummy1,
   WorkSpaceDummy2,
@@ -8,41 +9,47 @@ import {
 } from "../../lib/types/workSpace";
 import Card from "./Card";
 import * as S from "./style";
-export interface MainProps {}
+export interface MainProps {
+  workSpaceList: Array<WorkSpace>;
+}
 
-const workSpaces = [
-  {
-    ...WorkSpaceDummy,
-    users: [...userListDummy],
-  },
-  {
-    ...WorkSpaceDummy1,
-    users: [...userListDummy],
-  },
-  {
-    ...WorkSpaceDummy2,
-    users: [...userListDummy],
-  },
-  {
-    ...WorkSpaceDummy3,
-    users: [...userListDummy],
-  },
-];
+// const workSpaces = [
+//   {
+//     ...WorkSpaceDummy,
+//     users: [...userListDummy],
+//   },
+//   {
+//     ...WorkSpaceDummy1,
+//     users: [...userListDummy],
+//   },
+//   {
+//     ...WorkSpaceDummy2,
+//     users: [...userListDummy],
+//   },
+//   {
+//     ...WorkSpaceDummy3,
+//     users: [...userListDummy],
+//   },
+// ];
 
-const Main = ({}: MainProps) => {
+const Main = ({ workSpaceList = [] }: MainProps) => {
   return (
     <S.Wrapper>
       <S.Title>나의 워크스페이스</S.Title>
       <S.Grid>
-        {workSpaces.map((c) => (
-          <Card
-            key={c.workSpaceId}
-            workSpaceId={c.workSpaceId}
-            workSpaceName={c.workSpaceName}
-            createAt={c.createAt}
-            users={c.users}
-          />
-        ))}
+        {workSpaceList.length === 0 ? (
+          <div> 워크스페이스가 비어있습니다 </div>
+        ) : (
+          workSpaceList.map((c) => (
+            <Card
+              key={c.id}
+              workSpaceId={c.id}
+              workSpaceName={c.name}
+              createdAt={c.createdAt}
+              memberList={c.memberList}
+            />
+          ))
+        )}
       </S.Grid>
     </S.Wrapper>
   );
