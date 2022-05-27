@@ -4,3 +4,4 @@ export const isLoginedAtom = atom<boolean>({
     key: "atom/isLogined",
     default:false,
 })
+

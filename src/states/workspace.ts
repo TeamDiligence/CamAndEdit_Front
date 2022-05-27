@@ -1,5 +1,10 @@
 import { atom } from "recoil";
 
+export const inviteModalStateAtom = atom<boolean>({
+    key: "atom/inviteModalState",
+    default:false,
+})
+
 export const meetingRoomStateAtom = atom<boolean>({
     key: "atom/meetingRoomState",
     default : false,

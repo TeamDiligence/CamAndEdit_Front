@@ -3,12 +3,12 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_MIDDLE_SIZE, ICON_SMALL_SIZE } from "../../lib/styles/size";
-import { createWorkSpaceStateAtom } from "../../states/main";
+import { createWorkSpaceModalStateAtom } from "../../states/main";
 import CustomIcon from "../common/CustomIcon";
 
 const MainNavBar: React.FC<any> = () => {
-  const [createWorkSpaceState, setCreateWorkSpaceState] =
-    useRecoilState<boolean>(createWorkSpaceStateAtom);
+  const [createWorkSpaceModalState, setCreateWorkSpaceModalState] =
+    useRecoilState<boolean>(createWorkSpaceModalStateAtom);
   return (
     <>
       <Middle>
@@ -16,8 +16,8 @@ const MainNavBar: React.FC<any> = () => {
           icon={icons.PlusIcon}
           height={ICON_MIDDLE_SIZE}
           onClick={() => {
-            console.log(createWorkSpaceState);
-            setCreateWorkSpaceState(!createWorkSpaceState);
+            console.log(createWorkSpaceModalState);
+            setCreateWorkSpaceModalState(!createWorkSpaceModalState);
           }}
         />
       </Middle>

@@ -3,7 +3,11 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_SMALL_SIZE } from "../../lib/styles/size";
-import { camListStateAtom, meetingRoomStateAtom } from "../../states/workspace";
+import {
+  camListStateAtom,
+  inviteModalStateAtom,
+  meetingRoomStateAtom,
+} from "../../states/workspace";
 import CustomIcon from "../common/CustomIcon";
 
 const WorkSpaceNavBar: React.FC<any> = () => {
@@ -11,11 +15,18 @@ const WorkSpaceNavBar: React.FC<any> = () => {
     useRecoilState<boolean>(meetingRoomStateAtom);
   const [camListState, setCamListState] =
     useRecoilState<boolean>(camListStateAtom);
-  const onHandleMeetingRoom = () => {
+  const [inviteModalState, setInviteModalState] =
+    useRecoilState<boolean>(inviteModalStateAtom);
+  const handleMeetingRoom = () => {
     setMeetingRoomState(!meetingRoomState);
   };
-  const onHandleCamList = () => {
+  const handleCamList = () => {
     setCamListState(!camListState);
+  };
+
+  const handleInviteButton = () => {
+    console.log(123, inviteModalState);
+    setInviteModalState(!inviteModalState);
   };
 
   return (
@@ -23,32 +34,19 @@ const WorkSpaceNavBar: React.FC<any> = () => {
       <CustomIcon
         icon={icons.ListIconSvg}
         width={ICON_SMALL_SIZE}
-        onClick={onHandleMeetingRoom}
+        onClick={handleMeetingRoom}
       />
       <CustomIcon
         icon={icons.GroupIconSvg}
         width={ICON_SMALL_SIZE}
-        onClick={onHandleCamList}
+        onClick={handleCamList}
       />
       <Middle>
         <CustomIcon icon={icons.AddDocsIconSvg} width={ICON_SMALL_SIZE} />
         <CustomIcon icon={icons.AddCanvasIconSvg} width={ICON_SMALL_SIZE} />
       </Middle>
       <OverSizeIconStyle>
-        <div
-          style={{
-            width: "100px",
-            backgroundColor: "#769dff",
-            borderRadius: "4px",
-            color: "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "4px",
-            boxSizing: "border-box",
-          }}>
-          hellllo
-        </div>
+        <div onClick={handleInviteButton}>invite</div>
       </OverSizeIconStyle>
       <CustomIcon icon={icons.LogoutIconSvg} width={ICON_SMALL_SIZE} />
     </>
@@ -68,8 +66,26 @@ const Middle = styled.div`
 `;
 
 const OverSizeIconStyle = styled.div`
-  width: 100%;
   & > div {
+    width: calc(100% + 40px);
+    flex: 1;
+    background-color: #769dff;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 20px;
+    box-sizing: border-box;
     transform: translateX(calc(-100% + 40px));
+    font-size: 1.2 rem;
+    font-weight: 500;
+    &:hover {
+      background-color: #4a7bf6;
+      transition: ease 0.2s;
+    }
+    &:active {
+      background-color: #bfd0fa;
+    }
   }
 `;
