@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProfileModal from "./components/common/Modal/ProfileModal";
 import AuthCheckerContainer from "./containers/AuthCheckerContainer";
 import WorkSpaceContainer from "./containers/WorkSpaceContainer";
 import AuthRedirectPage from "./pages/AuthRedirectPage";
@@ -12,7 +13,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthCheckerContainer />}>
-          <Route path="main" element={<MainPage />} />
+          <Route path="main" element={<MainPage />}>
+            {/* <Route path="profile" element={<ProfileModal />} /> */}
+          </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="workspace" element={<WorkSpacePage />}>
             <Route path=":id" caseSensitive element={<WorkSpaceContainer />} />

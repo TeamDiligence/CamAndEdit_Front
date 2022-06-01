@@ -17,7 +17,6 @@ const WorkSpacePage = () => {
       <NavigationBar type="workSpace" />
       <MeetingRoomContainer />
       <CamListContainer />
-      <Outlet />
     </PageLayout>
   );
 };

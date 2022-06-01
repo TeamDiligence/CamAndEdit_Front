@@ -44,3 +44,9 @@ export const createWorkSpaceStateAtom = atom<boolean>({
     default: false,
     key:"atom/createWorkSpaceState"
 })
+
+
+export const profileModalStateAtom = atom<boolean>({
+    default: false, 
+    key: "atom/profileModalState"
+})
