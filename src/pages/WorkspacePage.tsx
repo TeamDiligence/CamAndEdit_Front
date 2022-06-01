@@ -21,7 +21,7 @@ const WorkSpacePage = () => {
       <NavigationBar type="workSpace" />
       <MeetingRoomContainer />
       <CamListContainer />
-      <Outlet />
+      <Outlet /> {/* OutLet에 워크스페이스 nest 라우팅 */}
       {inviteModalState && <InviteModal />}
     </PageLayout>
   );

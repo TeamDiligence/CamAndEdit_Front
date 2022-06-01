@@ -3,29 +3,30 @@ import React, {
   ChangeEvent,
   ChangeEventHandler,
   KeyboardEvent,
+  useEffect,
   useState,
 } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Button } from "../../../lib/styles/button";
 import { Select, Option } from "../../../lib/styles/select";
 import { User, userListDummy } from "../../../lib/types/user";
-import { inviteModalStateAtom } from "../../../states/workspace";
+import {
+  inviteModalStateAtom,
+  memberListStateAtom,
+  workSpaceStateAtom,
+} from "../../../states/workspace";
 import Modal from "./Modal";
 export interface InviteModalProps {}
 export interface MemberProps {
   member: User;
 }
-// export interface Member {
-//   name: string;
-//   email: string;
-//   image: string;
-// }
 
 const InviteModal = ({}: InviteModalProps) => {
   const [inviteModalState, setInviteModalState] =
     useRecoilState<boolean>(inviteModalStateAtom);
   const [value, setValue] = useState<string>("");
-
+  const workSpaceState = useRecoilValue(workSpaceStateAtom);
+  const [memberList, setMemberList] = useRecoilState(memberListStateAtom);
   const onHandleState = () => {
     setInviteModalState(!inviteModalState);
   };
@@ -42,7 +43,13 @@ const InviteModal = ({}: InviteModalProps) => {
     }
   };
 
-  const memberList = userListDummy;
+  // const memberList = userListDummy;
+
+  // useEffect(() => {
+  //   const memberListState = workSpaceState.memberList;
+  //   setMemberList(memberListState);
+  //   console.log(memberList);
+  // });
 
   return (
     <Modal state={inviteModalState} onHandleState={onHandleState}>
@@ -64,8 +71,8 @@ const InviteModal = ({}: InviteModalProps) => {
         <hr />
         <MemberListWrapper>
           <div>참여자</div>
-          {memberList.map((member: User) => (
-            <Member member={member} />
+          {memberList.map((member: User, i) => (
+            <Member key={i} member={member} />
           ))}
         </MemberListWrapper>
       </Wrapper>
@@ -122,7 +129,7 @@ const MemberListWrapper = styled.div`
   align-items: center;
   overflow: scroll;
   box-sizing: border-box;
-  & > div:first-child {
+  & > div:first-of-type {
     width: 100%;
     margin-right: auto;
     padding: 2rem 2rem 0 2rem;

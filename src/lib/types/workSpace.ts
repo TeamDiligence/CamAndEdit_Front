@@ -1,11 +1,24 @@
 import { User } from "./user";
 
-export type WorkSpace = {
+export interface WorkSpace {
     id: number;
     name: string;
     createdAt: Date;
     adminUserId: number,
     memberList: Array<User>
+    meetingRoom: Array<MeetingRoom>,
+    camList:any,
+}
+
+
+
+export interface MeetingRoom {
+    
+
+}
+
+export interface CamList {
+    
 }
 
 export const WorkSpaceDummy = {
