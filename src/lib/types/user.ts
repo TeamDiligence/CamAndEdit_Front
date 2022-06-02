@@ -25,6 +25,7 @@ export const userListDummy :Array<User> = [
 		name: '김상준',
 		description: "안녕 내 이름은 김 상준이야",
 		image: null,
+		role:"admin",
 		workSpaceList: []
 	},
 	{

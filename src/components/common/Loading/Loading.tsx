@@ -4,7 +4,7 @@ import React from "react";
 import { Layout } from "../../Login/style";
 const Loading = () => {
   return (
-    <Layout style={{ backgroundColor: "#0A69FA" }}>
+    <Layout style={{ backgroundColor: "#0A69FA66" }}>
       <Loader />
       <Text> Loading... </Text>
     </Layout>

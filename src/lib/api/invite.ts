@@ -1,16 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 import { getCookie } from "../utils/cookie";
 
 
 
-export const getUserInfo = async () => {
+export const sendMail = async ({id,email}:{id:number, email:string}) => {
     const accessToken = getCookie('CAE_accessToken')
-    // console.log(accessToken);
     const response = await axios({
-        method: "GET",
-        url: "/user",
+        method: "POST",
+        url: `/workSpace/${id}/invite`,
         headers: {
             Authorization: `Bearer ${accessToken}`
+        },
+        data: {
+            email:`${email}`
         }
     })
     .then(res => res.data)
@@ -20,27 +22,27 @@ export const getUserInfo = async () => {
         return ;
     });
     return response;
+
+
 }
 
-export const createWorkSpace = async (name:string) => {
+export const checkInvite = async ({email,workSpaceId}:{email:string,workSpaceId:number|string}) => {
     const accessToken = getCookie('CAE_accessToken')
     const response = await axios({
         method: "POST",
-        url: "/workspace",
+        url: `/workSpace/${workSpaceId}/invite/check`,
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
         data: {
-            name: name
+            email:`${email}`
         }
     })
-        .then(res => {
-            const { data } = res;
-            return data;
-        })
-        .catch(e => {
-            const { data } = e.response;
-            return data;
-        });
+    .then(res => res.data)
+    .catch(e => {
+        const {data}  = e.response;
+        console.log(data);
+        return ;
+    });
     return response;
 }

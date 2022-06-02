@@ -4,10 +4,10 @@ import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpaceModa
 import NavigationBar from "../components/Navbar/";
 import MainContainer from "../containers/MainContainer";
 import { PageLayout } from "../lib/styles/layout";
-import { createWorkSpaceStateAtom } from "../states/main";
+import { createWorkSpaceModalStateAtom } from "../states/main";
 
 const MainPage = () => {
-  const createWorkSpaceState = useRecoilValue(createWorkSpaceStateAtom);
+  const createWorkSpaceState = useRecoilValue(createWorkSpaceModalStateAtom);
 
   return (
     <PageLayout>

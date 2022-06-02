@@ -9,18 +9,18 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { createWorkSpace, getUserInfo } from "../../../lib/api/user";
 import { Button } from "../../../lib/styles/button";
 import { User } from "../../../lib/types/user";
-import { createWorkSpaceStateAtom, userAtom } from "../../../states/main";
+import { createWorkSpaceModalStateAtom, userAtom } from "../../../states/main";
 import Modal from "./Modal";
 export interface CreateWorkSpaceModalProps {}
 
 const CreateWorkSpaceModal = ({}: CreateWorkSpaceModalProps) => {
-  const [createWorkSpaceState, setCreateWorkSpaceModalState] =
-    useRecoilState<boolean>(createWorkSpaceStateAtom);
+  const [createWorkSpaceModalState, setCreateWorkSpaceModalState] =
+    useRecoilState<boolean>(createWorkSpaceModalStateAtom);
   const setUser = useSetRecoilState<User>(userAtom);
   const [value, setValue] = useState<string>("");
 
   const onHandleState = () => {
-    setCreateWorkSpaceModalState(!createWorkSpaceState);
+    setCreateWorkSpaceModalState(!createWorkSpaceModalState);
   };
   const onChangeValue: ChangeEventHandler<HTMLInputElement> = (
     e: ChangeEvent
@@ -40,14 +40,14 @@ const CreateWorkSpaceModal = ({}: CreateWorkSpaceModalProps) => {
     if (success) {
       const { data } = await getUserInfo();
       setUser(data);
-      setCreateWorkSpaceModalState(!createWorkSpaceState);
+      setCreateWorkSpaceModalState(!createWorkSpaceModalState);
     } else {
       alert(message);
     }
   };
 
   return (
-    <Modal state={createWorkSpaceState} onHandleState={onHandleState}>
+    <Modal state={createWorkSpaceModalState} onHandleState={onHandleState}>
       <Wrapper>
         <div>로고</div>
         <Title>

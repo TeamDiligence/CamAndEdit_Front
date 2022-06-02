@@ -40,7 +40,7 @@ export const roomInfoAtom = atom<roomInfoType>({
 
 
 
-export const createWorkSpaceStateAtom = atom<boolean>({
+export const createWorkSpaceModalStateAtom = atom<boolean>({
     default: false,
-    key:"atom/createWorkSpaceState"
+    key:"atom/createWorkSpaceModalState"
 })

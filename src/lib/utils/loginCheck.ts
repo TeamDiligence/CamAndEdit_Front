@@ -6,7 +6,7 @@ export const loginCheck = async () => {
     const response = await getUserInfo();
 
     if (!response) { 
-        removeCookie("CAE_accessToken");
+        document.cookie = "CAE_accessToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
         return {loginState : false, data:[]}
     }
     if (cookie && response.success === true) {
@@ -15,4 +15,13 @@ export const loginCheck = async () => {
     }
     else
         return {loginState:false, data:[]};
+}
+
+
+export const logout = async () => {
+    await (async () => {
+        removeCookie("CAE_accessToken")
+        document.cookie = "CAE_accessToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+    })()
+    await (async () => window.location.reload())()
 }
