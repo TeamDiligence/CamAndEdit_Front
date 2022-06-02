@@ -18,7 +18,7 @@ export const inviteModalStateAtom = atom<boolean>({
     key: "atom/inviteModalState",
     default:false,
 })
-export const memberListStateAtom = atom<User[]>({
+export const memberListStateAtom = atom<{memberList:User[], inviteMember:string[]}>({
     key: "atom/memberListState",
     default:undefined,
 })

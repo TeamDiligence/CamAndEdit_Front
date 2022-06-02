@@ -25,7 +25,6 @@ const WorkSpaceNavBar: React.FC<any> = () => {
   };
 
   const handleInviteButton = () => {
-    console.log(123, inviteModalState);
     setInviteModalState(!inviteModalState);
   };
 

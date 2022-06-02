@@ -4,9 +4,12 @@ import React, {
   ChangeEventHandler,
   KeyboardEvent,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { sendMail } from "../../../lib/api/invite";
+import { getMemberList } from "../../../lib/api/workSpace";
 import { Button } from "../../../lib/styles/button";
 import { Select, Option } from "../../../lib/styles/select";
 import { User, userListDummy } from "../../../lib/types/user";
@@ -15,49 +18,65 @@ import {
   memberListStateAtom,
   workSpaceStateAtom,
 } from "../../../states/workspace";
+import LoadingIcon from "../LoadingIcon";
 import Modal from "./Modal";
 export interface InviteModalProps {}
 export interface MemberProps {
-  member: User;
+  member?: User;
+  invitedEmail?: string;
 }
 
 const InviteModal = ({}: InviteModalProps) => {
   const [inviteModalState, setInviteModalState] =
     useRecoilState<boolean>(inviteModalStateAtom);
-  const [value, setValue] = useState<string>("");
+  const valueRef = useRef<HTMLInputElement>(null);
   const workSpaceState = useRecoilValue(workSpaceStateAtom);
-  const [memberList, setMemberList] = useRecoilState(memberListStateAtom);
+  const [{ memberList, inviteMember }, setMemberListState] =
+    useRecoilState(memberListStateAtom);
+  const [loading, setLoading] = useState<boolean>(false);
   const onHandleState = () => {
     setInviteModalState(!inviteModalState);
   };
-  const onChangeValue: ChangeEventHandler<HTMLInputElement> = (
-    e: ChangeEvent
-  ) => {
-    const target = e.target as HTMLInputElement;
-    setValue(target.value);
-  };
-
   const handleEnter = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
-      // handleCreateWorkSpace();
+      handleSendinviteMail();
+    }
+  };
+  const handleSendinviteMail = async () => {
+    const id = workSpaceState.id;
+    const email = valueRef.current ? valueRef.current.value.trim() : "";
+    const emailCheck = emailRegCheck(email);
+
+    const fetchInviteUser = async () => {
+      const workSpaceId = workSpaceState.id;
+      const memberList = await getMemberList(workSpaceId);
+      setMemberListState(memberList.data);
+      valueRef.current!.value = "";
+    };
+
+    if (id && emailCheck) {
+      await (async () => setLoading(true))();
+      await sendMail({ id, email });
+      await fetchInviteUser();
+      await (async () => setLoading(false))();
     }
   };
 
-  // const memberList = userListDummy;
+  const emailRegCheck = (email: string) => {
+    const regEmail =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
-  // useEffect(() => {
-  //   const memberListState = workSpaceState.memberList;
-  //   setMemberList(memberListState);
-  //   console.log(memberList);
-  // });
+    if (!regEmail.test(email)) {
+      alert("이메일을 정확히 입력해주세요");
+    } else return email;
+  };
 
   return (
     <Modal state={inviteModalState} onHandleState={onHandleState}>
       <Wrapper>
         <Form>
           <EmailInput
-            value={value}
-            onChange={onChangeValue}
+            ref={valueRef}
             onKeyPress={handleEnter}
             placeholder="이메일"
           />
@@ -66,8 +85,9 @@ const InviteModal = ({}: InviteModalProps) => {
             <Option value="write">write</Option>
             <Option value="both">edit / write</Option>
           </Select>
-          <Button onClick={() => console.log(123)}>초대하기</Button>
+          <Button onClick={handleSendinviteMail}>초대하기</Button>
         </Form>
+        {loading && <LoadingIcon />}
         <hr />
         <MemberListWrapper>
           <div className="classification">참여자</div>
@@ -76,8 +96,8 @@ const InviteModal = ({}: InviteModalProps) => {
           ))}
           <UnderLine />
           <div className="classification">대기자</div>
-          {memberList.map((member: User, i) => (
-            <Member key={i} member={member} />
+          {inviteMember.map((email: string, i) => (
+            <Member key={i} invitedEmail={email} />
           ))}
         </MemberListWrapper>
       </Wrapper>
@@ -168,7 +188,7 @@ const MemberListWrapper = styled.div`
   box-sizing: border-box;
   padding: 1rem;
   & > .classification {
-    /* width: 100%; */
+    position: relative;
     margin-right: auto;
     margin-bottom: 1rem;
     box-sizing: border-box;
@@ -180,18 +200,31 @@ const MemberListWrapper = styled.div`
   }
 `;
 
-const Member: React.FC<MemberProps> = ({ member }) => {
-  const { name, email, image, role } = member;
-  return (
-    <>
-      <MemberWrapper>
-        <img src={image === null ? "111" : image} alt="" width="30px" />
-        <MemberText>{name && name}</MemberText>
-        <MemberText>{email}</MemberText>
-        <MemberText>{role === "admin" ? "admin" : "write"}</MemberText>
-      </MemberWrapper>
-    </>
-  );
+const Member: React.FC<MemberProps> = ({ member, invitedEmail }) => {
+  if (member) {
+    const { name, email, image, role } = member;
+    return (
+      <>
+        <MemberWrapper>
+          <img src={image === null ? "111" : image} alt="" width="30px" />
+          <MemberText>{name && name}</MemberText>
+          <MemberText>{email}</MemberText>
+          <MemberText>{role === "admin" ? "admin" : "write"}</MemberText>
+        </MemberWrapper>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <MemberWrapper>
+          <img src="" alt="" width="30px" />
+          <InvitedMailText>대기중</InvitedMailText>
+          <InvitedMailText>{invitedEmail}</InvitedMailText>
+          <MemberText></MemberText>
+        </MemberWrapper>
+      </>
+    );
+  }
 };
 const MemberWrapper = styled.div`
   width: 100%;
@@ -213,6 +246,12 @@ const MemberText = styled.div`
   padding: 0.5rem 0;
   margin: auto;
 `;
+const InvitedMailText = styled.div`
+  padding: 0.5rem 0;
+  margin: auto;
+  color: #00000066;
+`;
+
 const UnderLine = styled.div`
   width: 100%;
   border: 1px solid black;

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import Loading from "../components/common/Loading/Loading";
 import WorkSpace from "../components/WorkSpace/WorkSpace";
-import { getWorkSpaceInfo } from "../lib/api/workSpace";
+import { getMemberList, getWorkSpaceInfo } from "../lib/api/workSpace";
 import {
   documentListAtom,
   meetingRoomStateAtom,
@@ -15,17 +15,20 @@ const WorkSpaceContainer = () => {
   const [workSpaceState, setWorkSpaceState] =
     useRecoilState(workSpaceStateAtom);
   const setMeetingRoomState = useSetRecoilState(meetingRoomStateAtom);
-  const setMemberListState = useSetRecoilState(memberListStateAtom);
+  const [memberListState, setMemberListState] =
+    useRecoilState(memberListStateAtom);
   const { id } = useParams();
+
   useEffect(() => {
     const fetchWorkSpace = async () => {
-      const response = await getWorkSpaceInfo(id!);
-      setWorkSpaceState(response.data);
-      setMeetingRoomState(response.data.meetingRoom);
-      setMemberListState(response.data.memberList);
+      const workSpaceInfo = await getWorkSpaceInfo(id!);
+      const memberList = await getMemberList(id!);
+      console.log(workSpaceInfo, memberList);
+      setWorkSpaceState(workSpaceInfo.data);
+      setMeetingRoomState(workSpaceInfo.data.meetingRoom);
+      setMemberListState(memberList.data);
     };
     fetchWorkSpace();
-    console.log(workSpaceState);
   }, []);
 
   if (!workSpaceState) {
