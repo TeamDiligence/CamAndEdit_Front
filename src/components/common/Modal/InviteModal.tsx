@@ -70,7 +70,12 @@ const InviteModal = ({}: InviteModalProps) => {
         </Form>
         <hr />
         <MemberListWrapper>
-          <div>참여자</div>
+          <div className="classification">참여자</div>
+          {memberList.map((member: User, i) => (
+            <Member key={i} member={member} />
+          ))}
+          <UnderLine />
+          <div className="classification">대기자</div>
           {memberList.map((member: User, i) => (
             <Member key={i} member={member} />
           ))}
@@ -88,7 +93,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 728px;
+  max-width: 500px;
 `;
 
 const Form = styled.div`
@@ -100,24 +105,55 @@ const Form = styled.div`
   & > select {
     height: 100%;
     margin-left: auto;
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
   & > button {
     margin-left: 1rem;
+    width: 100px;
+    word-break: keep-all;
+    overflow: hidden;
+    font-size: 1rem;
   }
 `;
 
 const EmailInput = styled.input`
-  font-size: 1.3rem;
+  margin: auto 0;
   border: 0;
   border-bottom: 1px solid black;
-  padding-left: 1.3rem;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
   margin-left: 1.3rem;
+  font-size: 1.3rem;
+  flex: 1;
+  min-width: 100px;
+  &::placeholder {
+    position: absolute;
+    left: calc(50% - 1.95rem);
+    transition: ease 0.5s;
+    margin-left: 0.5rem;
+    box-sizing: border-box;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      left: calc(50% - 1.75rem);
+    }
+  }
+
   &:focus {
     background-color: #eaeaea80;
     border-radius: 5px 5px 0px 0px;
     outline: 0px;
     transition: ease 0.3s;
+
+    &::-webkit-input-placeholder {
+      left: 0;
+    }
   }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+  overflow: visible;
 `;
 
 const MemberListWrapper = styled.div`
@@ -127,13 +163,20 @@ const MemberListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   box-sizing: border-box;
-  & > div:first-of-type {
-    width: 100%;
+  padding: 1rem;
+  & > .classification {
+    /* width: 100%; */
     margin-right: auto;
-    padding: 2rem 2rem 0 2rem;
-    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #00000033;
+    /* text-decoration: underline */
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
   }
 `;
 
@@ -142,12 +185,11 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   return (
     <>
       <MemberWrapper>
-        <img src={image === null ? "123" : image} alt="" width="50px" />
+        <img src={image === null ? "111" : image} alt="" width="30px" />
         <MemberText>{name && name}</MemberText>
         <MemberText>{email}</MemberText>
         <MemberText>{role === "admin" ? "admin" : "write"}</MemberText>
       </MemberWrapper>
-      <UnderLine />
     </>
   );
 };
@@ -155,14 +197,25 @@ const MemberWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 40px 3rem minmax(100px, 200px) 3rem;
+
   justify-content: space-around;
+  align-items: center;
+  @media (max-width: 768px) {
+    & > img {
+      display: none;
+    }
+    grid-template-columns: 3rem minmax(100px, 200px) 3rem;
+    grid-column-gap: 8px;
+    font-size: 0.8rem;
+  }
 `;
 const MemberText = styled.div`
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   margin: auto;
 `;
 const UnderLine = styled.div`
-  width: calc(100% - 40px);
+  width: 100%;
   border: 1px solid black;
   border-radius: 10px;
+  margin: 1rem 0;
 `;

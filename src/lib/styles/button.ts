@@ -15,4 +15,7 @@ color: #ffffff;
   background-color: #aee0ff;
 }
 transition: 0.2s;
+@media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
