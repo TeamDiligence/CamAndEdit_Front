@@ -24,12 +24,6 @@ export const userWorkSpaceSelector = selector<any>({
 })
 
 
-export const userInfoAtom = atom<userInfoType[]>({
-    default:[],
-    key:"atom/userInfo"
-})
-
-
 export const roomInfoAtom = atom<roomInfoType>({
     default: {
         roomId:"",

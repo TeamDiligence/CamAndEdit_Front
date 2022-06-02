@@ -1,7 +1,9 @@
 export interface userInfoType  {
-    id: string;
-    nickname: string;
-    stream:MediaStream | null;
+    userId: number;
+    name: string;
+    email: string;
+    description: string;
+    // stream: MediaStream | null;
 }
 
 

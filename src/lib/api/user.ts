@@ -22,25 +22,32 @@ export const getUserInfo = async () => {
     return response;
 }
 
-export const createWorkSpace = async (name:string) => {
+
+
+export const patchUserInfo = async ({ name, description, beforeUserData }: { name?: string, description?: string, beforeUserData: {name:string,description:string} }) => { 
     const accessToken = getCookie('CAE_accessToken')
+    const data = {
+        name: name ? name : beforeUserData.name,
+        description : description ? description :beforeUserData.description
+    }
     const response = await axios({
-        method: "POST",
-        url: "/workspace",
+        method: "PATCH",
+        url: "/user",
         headers: {
             Authorization: `Bearer ${accessToken}`
         },
         data: {
-            name: name
+            "name": name,
+            "description": description
         }
     })
-        .then(res => {
-            const { data } = res;
-            return data;
-        })
-        .catch(e => {
-            const { data } = e.response;
-            return data;
-        });
+    .then(res => res.data)
+    .catch(e => {
+        const {data}  = e.response;
+        console.log(data);
+        return ;
+    });
     return response;
+
+
 }

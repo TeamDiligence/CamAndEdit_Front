@@ -1,14 +1,21 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import { CloseIcon, ModifyIcon } from "../../../lib/asset/svg";
+import { User } from "../../../lib/types/user";
 import { profileModalStateAtom } from "../../../states/main";
+import CustomIcon from "../CustomIcon";
 
-type ModalProps = {};
+type ProfileModalProps = {
+  user: User;
+};
 
-const ProfileModal: React.FC<ModalProps> = ({}) => {
+const ProfileModal: React.FC<ProfileModalProps> = ({ user }) => {
   const [profileModalState, setProfileModalState] = useRecoilState(
     profileModalStateAtom
   );
+  console.log(user);
+  const { name, description, image = dummyimage, email } = user;
   const onHandleState = () => {
     setProfileModalState(!profileModalState);
   };
@@ -18,11 +25,22 @@ const ProfileModal: React.FC<ModalProps> = ({}) => {
 
   return (
     <Background onClick={onHandleState} modalState={profileModalState}>
-      <Content onClick={onHandlePropgation}>
-        <TopBar></TopBar>
-        <ProfileImg></ProfileImg>
-        <Description>안녕하십니가?</Description>
-        <Email></Email>
+      <Content onClick={onHandlePropgation} modalState={profileModalState}>
+        <TopBar>
+          <CustomIcon icon={ModifyIcon} size={25} />
+          <CustomIcon icon={CloseIcon} size={25} />
+        </TopBar>
+        <Profile>
+          <img
+            src={image!}
+            alt="profile"
+            width="100%"
+            style={{ borderRadius: "50%" }}
+          />
+          <Name>{name}</Name>
+        </Profile>
+        <Description>{description || "설명이 아직 없습니다"}</Description>
+        <Email>{email}</Email>
       </Content>
     </Background>
   );
@@ -41,8 +59,9 @@ const Background = styled("div")`
   display: flex;
   justify-content: end;
   align-items: center;
-  display: ${({ modalState }: { modalState: boolean }) =>
-    modalState ? "flex" : "none"};
+  opacity: ${({ modalState }: { modalState: boolean }) =>
+    modalState ? 100 : 0};
+  transition: ease-in-out 0.2s;
 `;
 
 const Content = styled.div`
@@ -51,27 +70,51 @@ const Content = styled.div`
   height: 100%;
   padding: 2rem;
   box-sizing: border-box;
-  width: 40vw;
+  width: 30%;
+  min-width: 300px;
+  max-width: 450px;
   /* border: 1px solid #000000; */
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  right: ${({ modalState }: { modalState: boolean }) =>
+    modalState ? 0 : "-50%"};
+  transition: ease 0.3s;
 `;
 
 const TopBar = styled.div`
   width: 100%;
   height: 40px;
-  background-color: gray;
+  display: grid;
+  border-bottom: 1px #000000aa solid;
+  grid-template-columns: 30px 30px;
+  align-items: center;
+  justify-content: space-between;
 `;
-const ProfileImg = styled.div`
+const Profile = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-radius: 24px;
   width: 100%;
   height: 50%;
   margin-top: 3rem;
   background-color: #00000033;
+`;
+const Name = styled.div`
+  position: absolute;
+  bottom: calc(1.5rem);
+  right: calc(1.5rem);
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  background-color: #ffffffaa;
+  border-radius: 4px;
 `;
 
 const Description = styled.div`
@@ -80,7 +123,13 @@ const Description = styled.div`
 
 const Email = styled.div`
   margin-top: auto;
-  background-color: blue;
+  /* background-color: blue; */
   width: 100%;
   height: 1rem;
+  text-align: right;
+  font-size: 1.3rem;
+  color: #171717a7;
 `;
+
+const dummyimage =
+  "https://lh3.googleusercontent.com/a-/AOh14GjVDM2EIhwjQ1bT97w34muz-XlkSPCZEk3jiVjW_Q=s96-c";

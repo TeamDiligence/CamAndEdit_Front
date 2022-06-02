@@ -1,10 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpaceModal";
-import ProfileModal from "../components/common/Modal/ProfileModal";
 import NavigationBar from "../components/Navbar/";
 import MainContainer from "../containers/MainContainer";
+import ProfileModalContainer from "../containers/ProfileModalCotainer";
 import { PageLayout, WrapperLayout } from "../lib/styles/layout";
 import {
   createWorkSpaceModalStateAtom,
@@ -19,7 +18,7 @@ const MainPage = () => {
       <NavigationBar type="main" />
       <WrapperLayout>
         <MainContainer />
-        {profileModalState && <ProfileModal />}
+        <ProfileModalContainer />
       </WrapperLayout>
       {createWorkSpaceState && <CreateWorkSpaceModal />}
     </PageLayout>

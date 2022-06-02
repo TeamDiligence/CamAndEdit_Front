@@ -33,7 +33,6 @@ const WorkSpaceContainer = () => {
         setLoadErrorState(true);
         return false;
       }
-
       setWorkSpaceState(workSpaceInfo.data);
       setMeetingRoomState(workSpaceInfo.data.meetingRoom);
     };

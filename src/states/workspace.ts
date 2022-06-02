@@ -20,7 +20,7 @@ export const inviteModalStateAtom = atom<boolean>({
 })
 export const memberListStateAtom = atom<{memberList:User[], inviteMember:string[]}>({
     key: "atom/memberListState",
-    default:undefined,
+    default:{memberList:[], inviteMember:[]},
 })
 
 export const meetingRoomStateAtom = atom<boolean>({
