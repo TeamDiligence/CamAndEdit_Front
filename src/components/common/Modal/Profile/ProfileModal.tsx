@@ -1,34 +1,41 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { CloseIcon, ModifyIcon } from "../../../lib/asset/svg";
-import { User } from "../../../lib/types/user";
-import { profileModalStateAtom } from "../../../states/main";
-import CustomIcon from "../CustomIcon";
+import { EditValue } from "../../../../containers/ProfileModalCotainer";
+import { ModifyIcon } from "../../../../lib/asset/svg";
+import { User } from "../../../../lib/types/user";
+import { profileModalStateAtom } from "../../../../states/main";
+import CustomIcon from "../../CustomIcon";
+import EditContent from "./EditContent";
 
 type ProfileModalProps = {
   user: User;
+  handleSubmit: (EditValue: EditValue) => void;
 };
 
-const ProfileModal: React.FC<ProfileModalProps> = ({ user }) => {
+const ProfileModal: React.FC<ProfileModalProps> = ({ user, handleSubmit }) => {
   const [profileModalState, setProfileModalState] = useRecoilState(
     profileModalStateAtom
   );
-  console.log(user);
+  // console.log(user);
+  const [editModeState, setEditModeState] = useState<boolean>(false);
   const { name, description, image = dummyimage, email } = user;
   const onHandleState = () => {
+    setEditModeState(!editModeState);
     setProfileModalState(!profileModalState);
   };
   const onHandlePropgation = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+  };
+  const onHandleEditState = () => {
+    setEditModeState(!editModeState);
   };
 
   return (
     <Background onClick={onHandleState} modalState={profileModalState}>
       <Content onClick={onHandlePropgation} modalState={profileModalState}>
         <TopBar>
-          <CustomIcon icon={ModifyIcon} size={25} />
-          <CustomIcon icon={CloseIcon} size={25} />
+          <CustomIcon icon={ModifyIcon} size={25} onClick={onHandleEditState} />
         </TopBar>
         <Profile>
           <img
@@ -42,6 +49,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ user }) => {
         <Description>{description || "설명이 아직 없습니다"}</Description>
         <Email>{email}</Email>
       </Content>
+      <EditContent
+        modalState={editModeState}
+        setModalState={setEditModeState}
+        handleSubmit={handleSubmit}
+        name={name}
+        description={description}
+      />
     </Background>
   );
 };
@@ -59,13 +73,15 @@ const Background = styled("div")`
   display: flex;
   justify-content: end;
   align-items: center;
+  display: ${({ modalState }: { modalState: boolean }) =>
+    modalState ? "flex" : "none"};
   opacity: ${({ modalState }: { modalState: boolean }) =>
     modalState ? 100 : 0};
   transition: ease-in-out 0.2s;
 `;
 
 const Content = styled.div`
-  z-index: 6;
+  /* z-index: 6; */
   position: absolute;
   height: 100%;
   padding: 2rem;
@@ -79,6 +95,7 @@ const Content = styled.div`
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   right: ${({ modalState }: { modalState: boolean }) =>
     modalState ? 0 : "-50%"};
@@ -88,11 +105,10 @@ const Content = styled.div`
 const TopBar = styled.div`
   width: 100%;
   height: 40px;
-  display: grid;
+  display: flex;
   border-bottom: 1px #000000aa solid;
-  grid-template-columns: 30px 30px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 const Profile = styled.div`
   position: relative;

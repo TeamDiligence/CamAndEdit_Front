@@ -12,7 +12,6 @@ import {
 
 const MainPage = () => {
   const createWorkSpaceState = useRecoilValue(createWorkSpaceModalStateAtom);
-  const profileModalState = useRecoilValue(profileModalStateAtom);
   return (
     <PageLayout>
       <NavigationBar type="main" />

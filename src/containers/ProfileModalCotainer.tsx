@@ -1,28 +1,35 @@
-import React, { useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import ProfileModal from "../components/common/Modal/ProfileModal";
+import React, { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import ProfileModal from "../components/common/Modal/Profile/ProfileModal";
 import { getUserInfo, patchUserInfo } from "../lib/api/user";
 import { userAtom } from "../states/main";
 
+export type EditValue = {
+  name: string;
+  description: string;
+};
+
 const ProfileModalContainer = () => {
-  const user = useRecoilValue(userAtom);
+  const [user, setUser] = useRecoilState(userAtom);
+  const [reFresh, setReFresh] = useState<boolean>(false);
   //   const [profile,setProfile] = useState()
-  const handlePatchUserInfo = async ({
-    name,
-    description,
-  }: {
-    name?: string;
-    description?: string;
-  }) => {
+
+  const handlePatchUserInfo = async (editValue: EditValue) => {
+    const { name, description } = editValue;
     const beforeUserData = { name: user.name, description: user.description };
-    console.log(await patchUserInfo({ name, description, beforeUserData }));
+    return await patchUserInfo({ name, description, beforeUserData });
+  };
+  const handleSubmit = async (editValue: EditValue) => {
+    console.log(editValue);
+    await handlePatchUserInfo(editValue);
+    const userInfo = await getUserInfo();
+    console.log(userInfo.data);
+    await (async () => {
+      setUser(userInfo.data);
+    })();
   };
 
-  const profile = useEffect(() => {
-    (async () => {})();
-  });
-
-  return <ProfileModal user={user} />;
+  return <ProfileModal user={user} handleSubmit={handleSubmit} />;
 };
 
 export default ProfileModalContainer;
