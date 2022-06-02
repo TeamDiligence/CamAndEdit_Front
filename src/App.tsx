@@ -4,6 +4,7 @@ import ProfileModal from "./components/common/Modal/ProfileModal";
 import AuthCheckerContainer from "./containers/AuthCheckerContainer";
 import WorkSpaceContainer from "./containers/WorkSpaceContainer";
 import AuthRedirectPage from "./pages/AuthRedirectPage";
+import InviteRedirectPage from "./pages/InviteRedirectPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import WorkSpacePage from "./pages/WorkSpacePage";
@@ -22,6 +23,7 @@ const App = () => {
           </Route>
         </Route>
         <Route path="/auth" element={<AuthRedirectPage />} />
+        <Route path="/invite" element={<InviteRedirectPage />} />
         <Route path="*" element={<div> 페이지가 없습니다 </div>} />
       </Routes>
     </BrowserRouter>

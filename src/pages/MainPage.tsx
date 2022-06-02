@@ -7,12 +7,12 @@ import NavigationBar from "../components/Navbar/";
 import MainContainer from "../containers/MainContainer";
 import { PageLayout, WrapperLayout } from "../lib/styles/layout";
 import {
-  createWorkSpaceStateAtom,
+  createWorkSpaceModalStateAtom,
   profileModalStateAtom,
 } from "../states/main";
 
 const MainPage = () => {
-  const createWorkSpaceState = useRecoilValue(createWorkSpaceStateAtom);
+  const createWorkSpaceState = useRecoilValue(createWorkSpaceModalStateAtom);
   const profileModalState = useRecoilValue(profileModalStateAtom);
   return (
     <PageLayout>

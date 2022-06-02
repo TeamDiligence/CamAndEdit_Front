@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Button = styled.button`
 padding: 0.5rem 1rem;
-margin-top: 2rem;
+/* margin-top: 2rem; */
 background-color: #1ea9ff;
 font-size: 1.3rem;
 border: 0px;
@@ -15,4 +15,7 @@ color: #ffffff;
   background-color: #aee0ff;
 }
 transition: 0.2s;
+@media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
