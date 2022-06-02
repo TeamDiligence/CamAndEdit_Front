@@ -13,8 +13,7 @@ export const getWorkSpaceInfo = async (id:string) => {
     .then(res => res.data)
     .catch(e => {
         const {data}  = e.response;
-        console.log(data);
-        return ;
+        return data;
     });
     return response;
 }

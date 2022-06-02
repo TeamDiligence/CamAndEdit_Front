@@ -207,7 +207,7 @@ const Member: React.FC<MemberProps> = ({ member, invitedEmail }) => {
       <>
         <MemberWrapper>
           <img src={image === null ? "111" : image} alt="" width="30px" />
-          <MemberText>{name && name}</MemberText>
+          {/* <MemberText>{name && name}</MemberText> */}
           <MemberText>{email}</MemberText>
           <MemberText>{role === "admin" ? "admin" : "write"}</MemberText>
         </MemberWrapper>
@@ -229,7 +229,7 @@ const Member: React.FC<MemberProps> = ({ member, invitedEmail }) => {
 const MemberWrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 40px 3rem minmax(100px, 200px) 3rem;
+  grid-template-columns: 40px minmax(100px, 200px) 3rem;
 
   justify-content: space-around;
   align-items: center;
@@ -237,7 +237,7 @@ const MemberWrapper = styled.div`
     & > img {
       display: none;
     }
-    grid-template-columns: 3rem minmax(100px, 200px) 3rem;
+    grid-template-columns: minmax(100px, 200px) 3rem;
     grid-column-gap: 8px;
     font-size: 0.8rem;
   }

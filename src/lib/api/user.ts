@@ -5,6 +5,7 @@ import { getCookie } from "../utils/cookie";
 
 export const getUserInfo = async () => {
     const accessToken = getCookie('CAE_accessToken')
+    // console.log(accessToken);
     const response = await axios({
         method: "GET",
         url: "/user",

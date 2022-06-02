@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_SMALL_SIZE } from "../../lib/styles/size";
+import { logout } from "../../lib/utils/loginCheck";
 import {
   camListStateAtom,
   inviteModalStateAtom,
@@ -47,7 +48,13 @@ const WorkSpaceNavBar: React.FC<any> = () => {
       <OverSizeIconStyle>
         <div onClick={handleInviteButton}>invite</div>
       </OverSizeIconStyle>
-      <CustomIcon icon={icons.LogoutIconSvg} width={ICON_SMALL_SIZE} />
+      <CustomIcon
+        icon={icons.LogoutIconSvg}
+        width={ICON_SMALL_SIZE}
+        onClick={() => {
+          logout();
+        }}
+      />
     </>
   );
 };

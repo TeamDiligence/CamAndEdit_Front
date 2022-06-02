@@ -3,6 +3,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import * as icons from "../../lib/asset/svg";
 import { ICON_MIDDLE_SIZE, ICON_SMALL_SIZE } from "../../lib/styles/size";
+import { logout } from "../../lib/utils/loginCheck";
 import { createWorkSpaceModalStateAtom } from "../../states/main";
 import CustomIcon from "../common/CustomIcon";
 
@@ -34,6 +35,9 @@ const MainNavBar: React.FC<any> = () => {
         icon={icons.LogoutIconSvg}
         size={ICON_SMALL_SIZE}
         gridColumn="5/5"
+        onClick={() => {
+          logout();
+        }}
       />
     </>
   );
