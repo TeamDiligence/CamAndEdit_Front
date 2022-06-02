@@ -3,12 +3,16 @@ import { roomInfoType } from "../lib/types/roomInfo";
 import { User } from "../lib/types/user";
 import { userInfoType } from "../lib/types/userInfo";
 import { WorkSpace } from "../lib/types/workSpace";
-
+import { recoilPersist } from 'recoil-persist'
+const {persistAtom} = recoilPersist()
 
 export const userAtom = atom<User>({
     default: undefined,
-    key:"atom/user"
+    key: "atom/user",
+    effects_UNSTABLE:[persistAtom],
 })
+
+
 
 export const userWorkSpaceSelector = selector<any>({
     key: "selector/userWorkSpace",

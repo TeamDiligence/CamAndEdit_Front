@@ -14,9 +14,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthCheckerContainer />}>
-          <Route path="main" element={<MainPage />}>
-            {/* <Route path="profile" element={<ProfileModal />} /> */}
-          </Route>
+          <Route path="main" element={<MainPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="workspace" element={<WorkSpacePage />}>
             <Route path=":id" caseSensitive element={<WorkSpaceContainer />} />
