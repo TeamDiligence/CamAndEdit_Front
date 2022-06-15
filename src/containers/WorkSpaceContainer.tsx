@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { Navigate, Route, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import Loading from "../components/common/Loading/Loading";
 import WorkSpace from "../components/WorkSpace/WorkSpace";
 import * as api from "../lib/api/workSpace";
-import { isLoginedAtom, workSpaceLoadErrorAtom } from "../states/global";
+import { workSpaceLoadErrorAtom } from "../states/global";
 import { userAtom } from "../states/main";
 import {
   meetingRoomStateAtom,

@@ -1,4 +1,4 @@
-import { tabState } from "../../components/common/ResizableTab/ResizeableTab";
+import { tabState } from "../types/resizeableTab";
 
 
 export const resizeTab = ({ ref, tabState }: { ref: React.RefObject<HTMLDivElement>, tabState: tabState }) => {

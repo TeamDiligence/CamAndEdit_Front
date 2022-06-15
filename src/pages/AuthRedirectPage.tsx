@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
-import { Navigate, useHref, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { checkInvite } from "../lib/api/invite";
-import { getCookie, removeCookie, setCookie } from "../lib/utils/cookie";
+import { getCookie, setCookie } from "../lib/utils/cookie";
 import { loginCheck } from "../lib/utils/loginCheck";
 
 const AuthRedirectPage = () => {

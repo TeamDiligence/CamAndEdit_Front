@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   MouseEvent,
   MouseEventHandler,
@@ -6,22 +5,15 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { tabPosition, tabState } from "../../../lib/types/resizeableTab";
 import { resizeTab } from "../../../lib/utils/tabResize";
+import * as S from "./style";
 
 interface ResizableTabProps {
   parentRef?: React.ReactNode;
   position?: tabPosition;
   children: React.ReactNode;
 }
-
-export type tabState = {
-  onHandling: boolean;
-  position: tabPosition;
-  width: string;
-  height: string;
-};
-
-export type tabPosition = "left" | "right" | "bottom";
 
 const setInitState: (position: tabPosition) => tabState = (
   position: tabPosition
@@ -76,11 +68,6 @@ const ResizableTab: React.FC<ResizableTabProps> = ({
         return;
       }
     }
-
-    // setTabState({
-    //   ...tabState,
-    //   onHandling: true,
-    // });
   };
   const onMouseMove: MouseEventHandler<HTMLDivElement> = (e: MouseEvent) => {
     // console.log("마우스 움직임", tabState.onHandling);
@@ -125,9 +112,9 @@ const ResizableTab: React.FC<ResizableTabProps> = ({
   }, [tabState]);
 
   return (
-    <ResizableTabWrapper ref={ref} position={position}>
+    <S.ResizableTabWrapper ref={ref} position={position}>
       {position === "left" && (
-        <ResizeSide
+        <S.ResizeSide
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
@@ -135,67 +122,15 @@ const ResizableTab: React.FC<ResizableTabProps> = ({
         />
       )}
       {position === "bottom" && (
-        <ResizeSideBottom
+        <S.ResizeSideBottom
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
         />
       )}
-      <ResizeChildren>{children}</ResizeChildren>
-    </ResizableTabWrapper>
+      <S.ResizeChildren>{children}</S.ResizeChildren>
+    </S.ResizableTabWrapper>
   );
 };
 
 export default ResizableTab;
-
-const ResizableTabWrapper = styled.div<tabProps>`
-  position: absolute;
-  bottom: ${(props) => (props.position === "bottom" ? 0 : "")};
-  height: 100%;
-  width: 100%;
-  background-color: blue;
-  z-index: 1;
-`;
-
-type tabProps = {
-  position: tabPosition;
-};
-
-const ResizeSide = styled.div<tabProps>`
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  top: ${(props) => props.position === "bottom" && 0};
-  width: 10px;
-  height: 100%;
-  /* background-color: red; */
-  transform: translateX(50%);
-
-  &:hover {
-    cursor: col-resize;
-  }
-`;
-const ResizeSideBottom = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  width: 100%;
-  height: 10px;
-  /* background-color: blue; */
-  transform: translateY(-50%);
-
-  &:hover {
-    cursor: row-resize;
-  }
-`;
-
-const ResizeChildren = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: pink;
-  overflow: hidden;
-  &:hover {
-    cursor: default;
-  }
-`;

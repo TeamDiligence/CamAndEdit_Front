@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import Main from "../components/Main/Main";
 import { WorkSpace } from "../lib/types/workSpace";
 import { userWorkSpaceSelector } from "../states/main";
-import { useRecoilValue } from "recoil";
 
 const MainContainer = () => {
   const workSpaceList = useRecoilValue<Array<WorkSpace>>(userWorkSpaceSelector);

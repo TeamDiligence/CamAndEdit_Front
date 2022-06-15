@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
+import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import Loading from "../components/common/Loading/Loading";
-import { checkInvite } from "../lib/api/invite";
 import { User } from "../lib/types/user";
 import { getCookie } from "../lib/utils/cookie";
 import { loginCheck } from "../lib/utils/loginCheck";
-import { isLoginedAtom, redirectAtom } from "../states/global";
+import { isLoginedAtom } from "../states/global";
 import { userAtom } from "../states/main";
 
 export interface AuthCheckerContainerProps {}

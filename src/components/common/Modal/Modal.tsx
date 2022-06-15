@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
+import * as S from "./style";
 
 type ModalProps = {
   state: boolean;
@@ -16,35 +16,10 @@ const Modal: React.FC<ModalProps> = ({ children, state, onHandleState }) => {
   };
 
   return (
-    <ModalBackground onClick={onHandleState} modalState={state}>
-      <ModalContent onClick={onHandlePropgation}>{children}</ModalContent>
-    </ModalBackground>
+    <S.ModalBackground onClick={onHandleState} modalState={state}>
+      <S.ModalContent onClick={onHandlePropgation}>{children}</S.ModalContent>
+    </S.ModalBackground>
   );
 };
 
 export default Modal;
-
-const ModalBackground = styled("div")`
-  z-index: 2;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: ${({ modalState }: { modalState: boolean }) =>
-    modalState ? "flex" : "none"};
-`;
-
-const ModalContent = styled.div`
-  z-index: 6;
-  padding: 2rem;
-  /* border: 1px solid #000000; */
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #ffffff;
-  backdrop-filter: blur(20px);
-`;

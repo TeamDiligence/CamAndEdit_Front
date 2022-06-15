@@ -1,4 +1,3 @@
-import React from "react";
 import { useRecoilValue } from "recoil";
 import CamList from "../components/CamList/CamList";
 import { camListStateAtom } from "../states/workspace";
