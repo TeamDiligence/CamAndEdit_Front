@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import InviteModal from "../components/common/Modal/InviteModal";
-import NavigationBar from "../components/Navbar";
+import InviteModal from "../components/common/Modal/InviteModal/InviteModal";
+import NavigationBar from "../components/Navbar/Navbar";
 import CamListContainer from "../containers/CamListContainer";
 import MeetingRoomContainer from "../containers/MeetingRoomContainer";
 import { PageLayout } from "../lib/styles/layout";

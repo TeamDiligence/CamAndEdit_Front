@@ -13,6 +13,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* <Route path="/test" element={<ProfileModal />}></Route> */}
         <Route path="/" element={<AuthCheckerContainer />}>
           <Route path="main" element={<MainPage />} />
           <Route path="login" element={<LoginPage />} />
@@ -22,6 +23,7 @@ const App = () => {
         </Route>
         <Route path="/auth" element={<AuthRedirectPage />} />
         <Route path="/invite" element={<InviteRedirectPage />} />
+
         <Route path="*" element={<div> 페이지가 없습니다 </div>} />
       </Routes>
     </BrowserRouter>

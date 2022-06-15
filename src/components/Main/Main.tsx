@@ -1,36 +1,9 @@
-import styled from "@emotion/styled";
-import { userListDummy } from "../../lib/types/user";
-import {
-  WorkSpace,
-  WorkSpaceDummy,
-  WorkSpaceDummy1,
-  WorkSpaceDummy2,
-  WorkSpaceDummy3,
-} from "../../lib/types/workSpace";
-import Card from "./Card";
+import { WorkSpace } from "../../lib/types/workSpace";
 import * as S from "./style";
+import * as C from "./contain";
 export interface MainProps {
   workSpaceList: Array<WorkSpace>;
 }
-
-// const workSpaces = [
-//   {
-//     ...WorkSpaceDummy,
-//     users: [...userListDummy],
-//   },
-//   {
-//     ...WorkSpaceDummy1,
-//     users: [...userListDummy],
-//   },
-//   {
-//     ...WorkSpaceDummy2,
-//     users: [...userListDummy],
-//   },
-//   {
-//     ...WorkSpaceDummy3,
-//     users: [...userListDummy],
-//   },
-// ];
 
 const Main = ({ workSpaceList = [] }: MainProps) => {
   return (
@@ -40,13 +13,13 @@ const Main = ({ workSpaceList = [] }: MainProps) => {
         {workSpaceList.length === 0 ? (
           <div> 워크스페이스가 비어있습니다 </div>
         ) : (
-          workSpaceList.map((c) => (
-            <Card
-              key={c.id}
-              workSpaceId={c.id}
-              workSpaceName={c.name}
-              createdAt={c.createdAt}
-              memberList={c.memberList}
+          workSpaceList.map((cardInfo) => (
+            <C.Card
+              key={cardInfo.id}
+              workSpaceId={cardInfo.id}
+              workSpaceName={cardInfo.name}
+              createdAt={cardInfo.createdAt}
+              memberList={cardInfo.memberList}
             />
           ))
         )}

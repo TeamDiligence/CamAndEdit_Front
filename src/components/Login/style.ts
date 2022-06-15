@@ -23,6 +23,7 @@ align-items: center;
 justify-content: start;
 overflow: hidden;
 `;
+
 export const LogoWrapper = styled.div`
 margin-top:2rem;
 `

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpaceModal";
-import NavigationBar from "../components/Navbar/";
+import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpace/CreateWorkSpaceModal";
+import NavigationBar from "../components/Navbar/Navbar";
 import MainContainer from "../containers/MainContainer";
 import ProfileModalContainer from "../containers/ProfileModalCotainer";
 import { PageLayout, WrapperLayout } from "../lib/styles/layout";

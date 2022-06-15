@@ -1,6 +1,6 @@
 // import React, { useState } from 'react';
 // import { useRecoilState, useRecoilValue } from 'recoil';
-import InviteModal from "../components/common/Modal/InviteModal";
+import InviteModal from "../components/common/Modal/InviteModal/InviteModal";
 // import { sendMail } from '../lib/api/invite';
 // import { getMemberList } from '../lib/api/workSpace';
 // import { emailRegCheck } from '../lib/utils/reg';

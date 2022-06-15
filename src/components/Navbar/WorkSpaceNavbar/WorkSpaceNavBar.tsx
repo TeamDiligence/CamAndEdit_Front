@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { useRecoilState } from "recoil";
-import * as icons from "../../lib/asset/svg";
-import { ICON_SMALL_SIZE } from "../../lib/styles/size";
-import { logout } from "../../lib/utils/loginCheck";
+import * as icons from "../../../lib/asset/svg";
+import { ICON_SMALL_SIZE } from "../../../lib/styles/size";
+import { logout } from "../../../lib/utils/loginCheck";
 import {
   camListStateAtom,
   inviteModalStateAtom,
   meetingRoomStateAtom,
-} from "../../states/workspace";
-import CustomIcon from "../common/CustomIcon";
+} from "../../../states/workspace";
+import CustomIcon from "../../common/CustomIcon/CustomIcon";
+import * as S from "./style";
 
 const WorkSpaceNavBar: React.FC<any> = () => {
   const [meetingRoomState, setMeetingRoomState] =
@@ -41,13 +41,13 @@ const WorkSpaceNavBar: React.FC<any> = () => {
         width={ICON_SMALL_SIZE}
         onClick={handleCamList}
       />
-      <Middle>
+      <S.Middle>
         <CustomIcon icon={icons.AddDocsIconSvg} width={ICON_SMALL_SIZE} />
         <CustomIcon icon={icons.AddCanvasIconSvg} width={ICON_SMALL_SIZE} />
-      </Middle>
-      <OverSizeIconStyle>
+      </S.Middle>
+      <S.OverSizeIconStyle>
         <div onClick={handleInviteButton}>invite</div>
-      </OverSizeIconStyle>
+      </S.OverSizeIconStyle>
       <CustomIcon
         icon={icons.LogoutIconSvg}
         width={ICON_SMALL_SIZE}
@@ -60,38 +60,3 @@ const WorkSpaceNavBar: React.FC<any> = () => {
 };
 
 export default WorkSpaceNavBar;
-
-const Middle = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  grid-column: 3;
-  & > div {
-    margin-left: 10px;
-  }
-`;
-
-const OverSizeIconStyle = styled.div`
-  & > div {
-    width: calc(100% + 40px);
-    flex: 1;
-    background-color: #769dff;
-    border-radius: 4px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 20px;
-    box-sizing: border-box;
-    transform: translateX(calc(-100% + 40px));
-    font-size: 1.2 rem;
-    font-weight: 500;
-    &:hover {
-      background-color: #4a7bf6;
-      transition: ease 0.2s;
-    }
-    &:active {
-      background-color: #bfd0fa;
-    }
-  }
-`;
