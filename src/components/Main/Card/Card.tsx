@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../lib/types/user";
-import * as S from "./style";
 import * as C from "./contain";
+import * as S from "./style";
 export interface CardProps {
   key: number;
   workSpaceId?: number;

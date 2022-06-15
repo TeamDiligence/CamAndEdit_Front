@@ -1,27 +1,19 @@
-import styled from "@emotion/styled";
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { KeyboardEvent, useRef, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { sendMail } from "../../../../lib/api/invite";
 import { getMemberList } from "../../../../lib/api/workSpace";
-import { Button } from "../../Custom/Button";
-import { Select, Option } from "../../Custom/Select";
-import { User, userListDummy } from "../../../../lib/types/user";
+import { User } from "../../../../lib/types/user";
 import {
   inviteModalStateAtom,
   memberListStateAtom,
   workSpaceStateAtom,
 } from "../../../../states/workspace";
+import { Button } from "../../Custom/Button";
+import { Option, Select } from "../../Custom/Select";
 import LoadingIcon from "../../LoadingIcon";
 import Modal from "../Modal";
-import * as S from "./style";
 import * as C from "./contain";
+import * as S from "./style";
 
 export interface InviteModalProps {}
 

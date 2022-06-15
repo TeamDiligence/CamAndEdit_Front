@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "./style";
 import * as C from "./contain";
+import * as S from "./style";
 
 export type NavBarType = "main" | "workSpace";
 export interface NavBarProps {

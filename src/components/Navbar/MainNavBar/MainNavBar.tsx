@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as icons from "../../../lib/asset/svg";
 import { ICON_MIDDLE_SIZE, ICON_SMALL_SIZE } from "../../../lib/styles/size";

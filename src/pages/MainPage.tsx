@@ -1,14 +1,10 @@
-import React from "react";
 import { useRecoilValue } from "recoil";
 import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpace/CreateWorkSpaceModal";
 import NavigationBar from "../components/Navbar/Navbar";
 import MainContainer from "../containers/MainContainer";
 import ProfileModalContainer from "../containers/ProfileModalCotainer";
 import { PageLayout, WrapperLayout } from "../lib/styles/layout";
-import {
-  createWorkSpaceModalStateAtom,
-  profileModalStateAtom,
-} from "../states/main";
+import { createWorkSpaceModalStateAtom } from "../states/main";
 
 const MainPage = () => {
   const createWorkSpaceState = useRecoilValue(createWorkSpaceModalStateAtom);

@@ -1,6 +1,5 @@
-import * as S from "./style";
-import React, { ChangeEvent, useState } from "react";
 import { GoogleLogo } from "../../lib/asset";
+import * as S from "./style";
 
 export interface LoginProps {
   onClick: () => void;

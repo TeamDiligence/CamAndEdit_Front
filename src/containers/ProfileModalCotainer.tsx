@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
 import ProfileModal from "../components/common/Modal/Profile/ProfileModal";
 import { getUserInfo, patchUserInfo } from "../lib/api/user";
 import { userAtom } from "../states/main";

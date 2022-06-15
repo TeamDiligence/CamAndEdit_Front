@@ -1,6 +1,6 @@
 import { WorkSpace } from "../../lib/types/workSpace";
-import * as S from "./style";
 import * as C from "./contain";
+import * as S from "./style";
 export interface MainProps {
   workSpaceList: Array<WorkSpace>;
 }

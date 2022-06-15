@@ -1,6 +1,4 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProfileModal from "./components/common/Modal/Profile/ProfileModal";
 import AuthCheckerContainer from "./containers/AuthCheckerContainer";
 import WorkSpaceContainer from "./containers/WorkSpaceContainer";
 import AuthRedirectPage from "./pages/AuthRedirectPage";
