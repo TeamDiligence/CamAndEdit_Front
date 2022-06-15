@@ -20,6 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ type }) => {
 export default NavBar;
 
 const NavBarLayout = styled.div`
+  z-index: 3;
   position: relative;
   top: 0;
   left: 0;

@@ -6,7 +6,8 @@ import React, {
   useState,
 } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { createWorkSpace, getUserInfo } from "../../../lib/api/user";
+import { getUserInfo } from "../../../lib/api/user";
+import { createWorkSpace } from "../../../lib/api/workSpace";
 import { Button } from "../../../lib/styles/button";
 import { User } from "../../../lib/types/user";
 import { createWorkSpaceModalStateAtom, userAtom } from "../../../states/main";
