@@ -5,7 +5,7 @@ import { EditValue } from "../../../../containers/ProfileModalCotainer";
 import { ModifyIcon } from "../../../../lib/asset/svg";
 import { User } from "../../../../lib/types/user";
 import { profileModalStateAtom } from "../../../../states/main";
-import CustomIcon from "../../CustomIcon/CustomIcon";
+import Icon from "../../Custom/Icon";
 import * as S from "./style";
 import * as C from "./contain";
 
@@ -36,7 +36,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ user, handleSubmit }) => {
     <S.Background onClick={onHandleState} modalState={profileModalState}>
       <S.Content onClick={onHandlePropgation} modalState={profileModalState}>
         <S.TopBar>
-          <CustomIcon icon={ModifyIcon} size={25} onClick={onHandleEditState} />
+          <Icon icon={ModifyIcon} size={25} onClick={onHandleEditState} />
         </S.TopBar>
         <S.Profile>
           <img

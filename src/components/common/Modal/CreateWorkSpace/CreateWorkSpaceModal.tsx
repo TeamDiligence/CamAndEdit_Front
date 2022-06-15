@@ -7,7 +7,7 @@ import React, {
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { getUserInfo } from "../../../../lib/api/user";
 import { createWorkSpace } from "../../../../lib/api/workSpace";
-import { Button } from "../../../../lib/styles/button";
+import { Button } from "../../Custom/Button";
 import { User } from "../../../../lib/types/user";
 import {
   createWorkSpaceModalStateAtom,

@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import { EditValue } from "../../../../../containers/ProfileModalCotainer";
 import { ModifyIcon } from "../../../../../lib/asset/svg";
-import { Input } from "../../../../../lib/styles/input";
-import CustomIcon from "../../../CustomIcon/CustomIcon";
+import { Input } from "../../../Custom/Input";
+import Icon from "../../../Custom/Icon";
 import * as S from "./style";
 
 type EditContentProps = {
@@ -35,7 +35,7 @@ const EditContent = ({
         e.stopPropagation();
       }}
       modalState={modalState}>
-      <CustomIcon
+      <Icon
         icon={ModifyIcon}
         size={25}
         onClick={() => {

@@ -10,8 +10,8 @@ import React, {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { sendMail } from "../../../../lib/api/invite";
 import { getMemberList } from "../../../../lib/api/workSpace";
-import { Button } from "../../../../lib/styles/button";
-import { Select, Option } from "../../../../lib/styles/select";
+import { Button } from "../../Custom/Button";
+import { Select, Option } from "../../Custom/Select";
 import { User, userListDummy } from "../../../../lib/types/user";
 import {
   inviteModalStateAtom,

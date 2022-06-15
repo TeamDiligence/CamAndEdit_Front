@@ -8,7 +8,7 @@ import {
   createWorkSpaceModalStateAtom,
   profileModalStateAtom,
 } from "../../../states/main";
-import CustomIcon from "../../common/CustomIcon/CustomIcon";
+import Icon from "../../common/Custom/Icon";
 import * as S from "./style";
 
 const MainNavBar: React.FC<any> = () => {
@@ -21,7 +21,7 @@ const MainNavBar: React.FC<any> = () => {
   return (
     <>
       <S.Middle>
-        <CustomIcon
+        <Icon
           icon={icons.PlusIcon}
           height={ICON_MIDDLE_SIZE}
           onClick={() => {
@@ -30,7 +30,7 @@ const MainNavBar: React.FC<any> = () => {
           }}
         />
       </S.Middle>
-      <CustomIcon
+      <Icon
         icon={icons.ProfileIconSvg}
         height={ICON_SMALL_SIZE}
         gridColumn="4"
@@ -40,7 +40,7 @@ const MainNavBar: React.FC<any> = () => {
         }}
       />
 
-      <CustomIcon
+      <Icon
         icon={icons.LogoutIconSvg}
         size={ICON_SMALL_SIZE}
         gridColumn="5/5"

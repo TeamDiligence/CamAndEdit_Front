@@ -1,27 +1,27 @@
 import styled from "@emotion/styled";
 
 
-type CustomIconProps = {
+type IconProps = {
 
     gridColumn?: string;
     onClick?: () => void;
 };
 
-type CustomIconImgProps = {
+type IconImgProps = {
     size?: number;
     width?: number;
     height?: number;
     isButton?:boolean;
 }
 
-export const Wrapper = styled('div')<CustomIconProps>`
+export const Wrapper = styled('div')<IconProps>`
         display: flex;
         justify-content: center;
         align-items: center;
         grid-column: ${props=> props.gridColumn};
 `
 
-export const Img = styled('img')<CustomIconImgProps>`
+export const Img = styled('img')<IconImgProps>`
     ${props => props.size && `width:${props.size}px; height:${props.size}px;`}
     ${props =>props.width && `width:${props.width}px;`};
     ${props => props.height && `height:${props.height}px;`}

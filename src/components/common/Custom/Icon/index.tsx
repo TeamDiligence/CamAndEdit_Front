@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import React from "react";
 import * as S from "./style";
 
-type CustomIconProps = {
+type IconProps = {
   size?: number;
   width?: number;
   height?: number;
@@ -12,7 +11,7 @@ type CustomIconProps = {
   gridColumn?: string;
   onClick?: () => void;
 };
-const CustomIcon: React.FC<CustomIconProps> = ({
+const Icon: React.FC<IconProps> = ({
   width,
   height,
   size,
@@ -34,4 +33,4 @@ const CustomIcon: React.FC<CustomIconProps> = ({
     </S.Wrapper>
   );
 };
-export default CustomIcon;
+export default Icon;

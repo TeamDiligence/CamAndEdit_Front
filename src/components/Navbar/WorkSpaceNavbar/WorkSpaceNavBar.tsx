@@ -8,7 +8,7 @@ import {
   inviteModalStateAtom,
   meetingRoomStateAtom,
 } from "../../../states/workspace";
-import CustomIcon from "../../common/CustomIcon/CustomIcon";
+import Icon from "../../common/Custom/Icon";
 import * as S from "./style";
 
 const WorkSpaceNavBar: React.FC<any> = () => {
@@ -31,24 +31,24 @@ const WorkSpaceNavBar: React.FC<any> = () => {
 
   return (
     <>
-      <CustomIcon
+      <Icon
         icon={icons.ListIconSvg}
         width={ICON_SMALL_SIZE}
         onClick={handleMeetingRoom}
       />
-      <CustomIcon
+      <Icon
         icon={icons.GroupIconSvg}
         width={ICON_SMALL_SIZE}
         onClick={handleCamList}
       />
       <S.Middle>
-        <CustomIcon icon={icons.AddDocsIconSvg} width={ICON_SMALL_SIZE} />
-        <CustomIcon icon={icons.AddCanvasIconSvg} width={ICON_SMALL_SIZE} />
+        <Icon icon={icons.AddDocsIconSvg} width={ICON_SMALL_SIZE} />
+        <Icon icon={icons.AddCanvasIconSvg} width={ICON_SMALL_SIZE} />
       </S.Middle>
       <S.OverSizeIconStyle>
         <div onClick={handleInviteButton}>invite</div>
       </S.OverSizeIconStyle>
-      <CustomIcon
+      <Icon
         icon={icons.LogoutIconSvg}
         width={ICON_SMALL_SIZE}
         onClick={() => {
