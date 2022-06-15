@@ -1,7 +1,7 @@
 ---
 name: 'Feature '
 about: feature 추가
-title: "[Feature] :"
+title: "[Feature] : "
 labels: ''
 assignees: ''
 

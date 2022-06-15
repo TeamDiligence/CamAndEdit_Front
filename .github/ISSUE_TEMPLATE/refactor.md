@@ -1,7 +1,7 @@
 ---
 name: Refactor
 about: 리팩토링 요청
-title: "[Refactor]:"
+title: "[Refactor] : "
 labels: ''
 assignees: ''
 
