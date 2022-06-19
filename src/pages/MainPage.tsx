@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import CreateWorkSpaceModal from "../components/common/Modal/CreateWorkSpace/CreateWorkSpaceModal";
 import NavigationBar from "../components/Navbar/Navbar";
@@ -8,6 +9,7 @@ import { createWorkSpaceModalStateAtom } from "../states/main";
 
 const MainPage = () => {
   const createWorkSpaceState = useRecoilValue(createWorkSpaceModalStateAtom);
+
   return (
     <PageLayout>
       <NavigationBar type="main" />

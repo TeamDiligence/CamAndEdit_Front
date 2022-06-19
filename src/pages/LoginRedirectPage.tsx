@@ -4,7 +4,7 @@ import { checkInvite } from "../lib/api/invite";
 import { getCookie, setCookie } from "../lib/utils/cookie";
 import { loginCheck } from "../lib/utils/loginCheck";
 
-const AuthRedirectPage = () => {
+const LoginRedirectPage = () => {
   const { search: token } = useLocation();
   const parseText = "accessToken=";
   const accessToken = token.slice(token.indexOf(parseText) + parseText.length);
@@ -46,4 +46,4 @@ const AuthRedirectPage = () => {
   return <Navigate replace to="/" />;
 };
 
-export default AuthRedirectPage;
+export default LoginRedirectPage;

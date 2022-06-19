@@ -12,7 +12,7 @@ const spinreverse = keyframes`
 `;
 
 export const Text = styled.div`
-color: white;
+color: #0A69FA66;
 font-size: 2rem;
 margin-left: 1rem;
 `;
@@ -24,8 +24,8 @@ height: 50px;
 vertical-align: middle;
 border-radius: 50px;
 border: 6px solid transparent;
-border-top-color: #fff;
-border-bottom-color: #fff;
+border-top-color: #0A69FA66;
+border-bottom-color: #0A69FA66;
 -webkit-animation: ${spin} 1.5s linear infinite;
 animation: ${spin} 1.5s linear infinite;
 &:before {
@@ -45,8 +45,8 @@ bottom: 5px;
 right: 5px;
 border-radius: 50px;
 border: 6px solid transparent;
-border-top-color: #fff;
-border-bottom-color: #fff;
+border-top-color: #0A69FA66;
+border-bottom-color: #0A69FA66;
 filter: alpha(opacity=6);
 -khtml-opacity: 0.6;
 -moz-opacity: 0.6;
