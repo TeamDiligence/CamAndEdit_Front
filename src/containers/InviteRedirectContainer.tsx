@@ -4,7 +4,7 @@ import Loading from "../components/common/Loading/Loading";
 import { removeCookie } from "../lib/utils/cookie";
 import { loginCheck } from "../lib/utils/loginCheck";
 
-const InviteRedirectPage = () => {
+const InviteRedirectContainer = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
 
@@ -25,25 +25,31 @@ const InviteRedirectPage = () => {
     };
 
     const checkLogin = async () => {
-      const { data } = await loginCheck();
+      const { loginState, data } = await loginCheck();
+      if (loginState === false) {
+        throw { message: "Login failed", path: "login" };
+      }
     };
     const remove = async () => {
       removeCookie("CAE_accessToken");
     };
-    const setRedirect = async () => {
+    const setRedirectInfo = async () => {
       window.sessionStorage.setItem("redirect_email", parsedEmail);
       window.sessionStorage.setItem("redirect_workSpaceId", parsedWorkSpaceId);
+    };
+    const routing = async () => {
       navigate("/auth");
     };
-
     (async () => {
       try {
         await checkLoading(true);
+        await setRedirectInfo();
         await checkLogin();
-        await setRedirect();
         await checkLoading(false);
-      } catch (stop: any) {
-        navigate(stop.path);
+        await routing();
+      } catch (error: any) {
+        const { path } = error;
+        return navigate(`/${path}`);
       }
     })();
   });
@@ -54,4 +60,4 @@ const InviteRedirectPage = () => {
   return <Outlet />;
 };
 
-export default InviteRedirectPage;
+export default InviteRedirectContainer;
