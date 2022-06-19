@@ -2,10 +2,10 @@ import React from "react";
 import * as S from "./style";
 import { Layout } from "../../Login/style";
 const Loading = () => {
+  console.log("loading 랜더");
   return (
-    <Layout style={{ backgroundColor: "#0A69FA66" }}>
+    <Layout style={{ backgroundColor: "#ffffff" }}>
       <S.Loader />
-      <S.Text> Loading... </S.Text>
     </Layout>
   );
 };

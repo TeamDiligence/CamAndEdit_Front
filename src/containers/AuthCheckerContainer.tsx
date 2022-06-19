@@ -14,47 +14,51 @@ const AuthCheckerContainer = ({}: AuthCheckerContainerProps) => {
   const [loading, setLoading] = useState<boolean>(true);
   const accessToken = getCookie("CAE_accessToken");
   const [isLogined, setIsLogined] = useRecoilState(isLoginedAtom);
-  // const [{ isRediret, email, workSpaceId }, setRedirectInfoState] =
-  //   useRecoilState(redirectAtom);
-  const email = window.sessionStorage.getItem("email");
-  const workSpaceId = window.sessionStorage.getItem("workSpaceId");
   const setUser = useSetRecoilState<User>(userAtom);
   const navigate = useNavigate();
   const path = useLocation().pathname;
 
+  // console.log("authchecker 랜더");
+  //auth check 로직 실행 코드
   useEffect(() => {
     const loginStateCheck = async () => {
       if (!accessToken) return false;
 
       const { loginState, data } = await loginCheck();
       setIsLogined(loginState);
-      setLoading(false);
       setUser(data);
       // console.log(loginState, data);
       return loginState;
     };
-
+    //load State 비동기로 바꿔주기
+    const loadEnd = async () => {
+      setLoading(false);
+    };
+    //로딩 이후 navigate
     const routing = async (isLogined: boolean) => {
+      // console.log("routing", isLogined);
       if (isLogined) {
         switch (path) {
           case "/":
           case "/login":
           case "/Login":
             return navigate("main");
-          default:
+          default: {
+            // console.log("path : ", path);
             return navigate(path);
+          }
         }
       } else return navigate("login");
     };
 
     (async () => {
-      loginStateCheck().then((loginState) => {
-        routing(loginState);
-      });
+      const loginState = await loginStateCheck();
+      await loadEnd();
+      await routing(loginState);
     })();
   }, []);
 
-  if (loading && isLogined) {
+  if (loading) {
     return <Loading />;
   }
   return <Outlet />;
